@@ -44,7 +44,7 @@ const TabNavigator = createBottomTabNavigator(
         navigationOptions: {
           tabBarLabel: 'Post',
           tabBarIcon: ({ tintColor }) => (
-            <Image style={{width: 70, height: 70,marginTop: -20,}} source={require('./assets/postbtn.png')}/>
+            <Image style={{width: 65, height: 65,marginTop: -20,}} source={require('./assets/postbtn.png')} />
           ),
         },
       },
@@ -59,7 +59,7 @@ const TabNavigator = createBottomTabNavigator(
       },
   },
   {
-    initialRouteName: 'HomeScreen',
+    initialRouteName: 'WriteScreen',
   }
 );
 

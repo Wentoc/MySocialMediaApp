@@ -17,13 +17,13 @@ export default class HomeScreen extends React.Component {
           invertStickyHeaders={false}
         >
             <View style={styles.headerBar}>
-              <Text style={{textAlign: "center", fontSize: 20, justifyContent: "center", alignItems: 'center',marginTop: 32}}>
+              <Text style={{textAlign: "center", fontSize: 20, justifyContent: "center", alignItems: 'center',marginTop: 40}}>
                 Your Feed
               </Text>
             </View>
             <View style={styles.container}>
-              <View>
-                <Text>
+              <View style={styles.allPostContainer}>
+                <Text style={{padding:5}}>
                   My Post
                 </Text>   
                 <Text>
@@ -33,7 +33,7 @@ export default class HomeScreen extends React.Component {
 
                 Aut aperiam assumenda sit minus Quis est autem accusamus. Sit libero rerum et tenetur dolorem sed velit rerum ea iure recusandae in quia quae. Vel ullam suscipit sed alias architecto in quis vitae. Et quisquam praesentium ut Quis labore qui nemo sequi non exercitationem ullam ut distinctio omnis!
                 </Text>      
-                <Text>
+                <Text style={{padding:12}}>
                   My Post
                 </Text>   
                 <Text>
@@ -53,7 +53,7 @@ export default class HomeScreen extends React.Component {
 
                 Aut aperiam assumenda sit minus Quis est autem accusamus. Sit libero rerum et tenetur dolorem sed velit rerum ea iure recusandae in quia quae. Vel ullam suscipit sed alias architecto in quis vitae. Et quisquam praesentium ut Quis labore qui nemo sequi non exercitationem ullam ut distinctio omnis!
                 </Text>   
-                <Text>
+                <Text style={{padding:12}}>
                   My Post
                 </Text>   
                 <Text>
@@ -63,7 +63,7 @@ export default class HomeScreen extends React.Component {
 
                 Aut aperiam assumenda sit minus Quis est autem accusamus. Sit libero rerum et tenetur dolorem sed velit rerum ea iure recusandae in quia quae. Vel ullam suscipit sed alias architecto in quis vitae. Et quisquam praesentium ut Quis labore qui nemo sequi non exercitationem ullam ut distinctio omnis!
                 </Text>   
-                <Text>
+                <Text style={{padding:12}}>
                   My Post
                 </Text>   
                 <Text>
@@ -90,6 +90,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#00D2FF',
     flexDirection: 'row',
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  allPostContainer:{
+    justifyContent: 'space-around',
     alignItems: 'center',
   },
 });
