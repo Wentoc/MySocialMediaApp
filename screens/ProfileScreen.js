@@ -11,7 +11,8 @@ export default class Profile extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.headerBar}></View>
+        {/* <View style={styles.headerBar}></View> */}
+        <Text style={{textAlign: 'center', alignItems: 'center', justifyContent: 'center', marginTop: 400}}>Profile Screen!</Text>
       </View>
     );
   }

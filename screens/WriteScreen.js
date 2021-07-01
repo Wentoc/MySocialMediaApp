@@ -1,13 +1,25 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, ScrollView, FlatList, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { 
+  Text, 
+  View, 
+  StyleSheet, 
+  ScrollView, 
+  FlatList, 
+  TextInput, 
+  TouchableOpacity, 
+  KeyboardAvoidingView,
+  ImageBackground
+} from 'react-native';
+
+const image = {uri: '../assets/icon.png'}
 
 export default class WriteScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      uploaderName: '',
-      postTitle: '',
-      postContent: ''
+      uploaderName: '', // User Name
+      postTitle: '', // Title of the Post
+      postContent: '' // The Post content
     };
   }
 
@@ -18,15 +30,20 @@ export default class WriteScreen extends React.Component {
   render() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior='padding' enabled>
+        {/* <View style={styles.headerContent}>
+          <Text style={styles.headerContentText}>
+            What's on your mind?
+          </Text>
+        </View> */}
         <View style={styles.inputContainer}>
-        <TextInput
+        {/* <TextInput
           style={styles.uploaderNameAndTitleBox}
           multiline={false}
           require={true}
-          autoComplete={false}
+          autoFocus={true}
           placeholder={"  Enter the title..."}
           placeholder={"  Enter your name..."}
-          placeholderTextColor={'#ffffff'}
+          placeholderTextColor={'#A9B1B4'}
           onChangeText={(text)=>{
             this.setState({
               uploaderName: text
@@ -37,26 +54,24 @@ export default class WriteScreen extends React.Component {
           style={styles.uploaderNameAndTitleBox}
           multiline={false}
           require={true}
-          autoComplete={false}
-          autoCapitalize={false}
           placeholder={"  Enter the title..."}
           placeholder={"  Enter the title..."}
-          placeholderTextColor={'#ffffff'}
+          placeholderTextColor={'#A9B1B4'}
           onChangeText={(text)=>{
             this.setState({
               postTitle: text
             });
           }}
-        />
+        /> */}
         <TextInput
           style={styles.uploaderContent}
           multiline={true}
           underlineColorAndroid='transparent'
           require={true}
-          autoComplete={false}
-          autoCapitalize={false}
-          placeholder={"  Enter the title..."}
-          placeholderTextColor={'#ffffff'}
+          numberOfLines={10}
+          placeholder={"  Type the content..."}
+          placeholderTextColor={'#A9B1B4'}
+          placeholderTextAlign={'center'}
           onChangeText={(text)=>{
             this.setState({
               postTitle: text
@@ -65,6 +80,7 @@ export default class WriteScreen extends React.Component {
         />
         </View>
       </KeyboardAvoidingView>
+
     );
   }
 }
@@ -72,10 +88,10 @@ export default class WriteScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#000',
+        backgroundColor: '#EAE2E2',
     },
     uploaderNameAndTitleBox: {
-      borderWidth: 1.5,
+      // borderWidth: 0.5,
       borderColor: '#ffffff',
       color: "#ffffff",
       width: '95%',
@@ -87,17 +103,31 @@ const styles = StyleSheet.create({
       marginTop: 20
     },
     uploaderContent: {
-      borderWidth: 1.5,
-      borderColor: '#ffffff',
-      color: "#ffffff",
-      width: '95%',
-      height: 400,
+      backgroundColor: '#F8F0F0',
+      borderWidth: 0,
+      borderColor: '#000',
+      color: "#000000",
+      width: '93%',
+      height: 200,
       borderRadius: 3,
-      marginLeft: 11,
+      marginLeft: 12.5,
       marginTop: 20,
-      textAlignVertical: 'top'
+      textAlignVertical: 'top',
+      fontSize: 17,
+      borderRadius: 3,
     },
     inputContainer: {
-      marginTop: 100,
+      marginTop: -5,
+    },
+    headerContent: {
+
+    },
+    headerContentText: {
+      color: '#000',
+      fontSize: 17,
+      fontWeight: "900",
+      fontFamily: 'Roboto',
+      marginTop: 70,
+      marginLeft: 12
     }
 });
