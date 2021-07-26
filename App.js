@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, Image, Alert, ToastAndroid, Switch, EdgeInsetsPropType, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, Image, Alert, ToastAndroid, Switch, EdgeInsetsPropType, ScrollView, AppRegistry } from 'react-native';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { NavigationContainer } from '@react-navigation/native';
@@ -17,45 +17,9 @@ import HomeScreen from './screens/HomeScreen';
 import WriteScreen from './screens/WriteScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import Login from './screens/Login';
+import { Home } from 'react-native-feather';
+import Test from './screens/Test'
 // import MainTabNavigator from './screens/router';
-
-const Stack = createStackNavigator();
-const Tab = createMaterialTopTabNavigator();
-
-const MyTabs = ()=> {
-  const insets = useSafeAreaInsets();
-  return (
-    <ScrollView >
-      <Tab.Navigator
-        initialRouteName="HomeScreen"
-        tabBarOptions={{
-          activeTintColor: '#e91e63',
-          labelStyle: { fontSize: 12 },
-          style: { backgroundColor: '#000', marginTop: -1 },
-          // showLabel: false
-        }}
-      >
-        <Tab.Screen
-          name="HomeScreen"
-          component={HomeScreen}
-          options={{ tabBarLabel: 'Home', tabBarIcon:({ tintColor })=>(
-            <Feather name="home" size={30} color={'#F93680'} />
-          )}}
-        />
-        <Tab.Screen
-          name="WriteScreen"
-          component={WriteScreen}
-          options={{ tabBarLabel: 'Post' }}
-        />
-        <Tab.Screen
-          name="ProfileScreen"
-          component={ProfileScreen}
-          options={{ tabBarLabel: 'Profile' }}
-        />
-      </Tab.Navigator>
-    </ScrollView>
-  );
-}
 
 export default class App extends React.Component {
   constructor(props) {
@@ -127,9 +91,10 @@ export default class App extends React.Component {
 //   }
 // );
 const switchNavigator = createSwitchNavigator({
-  SignupScreen:{screen:SignupScreen},
-  LoginScreen:{screen:LoginScreen},
-  MyTabs:MyTabs
+  // Test:{screen:Test},
+  // SignupScreen:{screen:SignupScreen},
+  // LoginScreen:{screen:LoginScreen},
+  HomeScreen:{screen:HomeScreen}
 })
 const AppContainer = createAppContainer(switchNavigator);
 
@@ -146,3 +111,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+
+// AppRegistry.registerComponent('SocialMediaAppProject', () => App);

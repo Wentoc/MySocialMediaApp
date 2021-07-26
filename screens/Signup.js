@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { 
   View, 
-  TextInput, 
   StyleSheet, 
   Button, 
   Text,
@@ -15,14 +14,22 @@ import {
   Image,
   ImageBackground,
   SafeAreaView, StatusBar,
+  LogBox
 } from 'react-native';
 import db from '../config.js';
 import * as firebase from 'firebase';
 import { Feather } from 'react-native-vector-icons';
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign } from 'react-native-vector-icons';
 import { Header } from 'react-native-elements/dist/header/Header';
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons } from 'react-native-vector-icons';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Bold } from 'react-native-feather';
+import TextInput from 'react-native-textinput-with-icons';
+import { Hideo } from 'react-native-textinput-effects';
+import _ from 'lodash';
+
+LogBox.ignoreLogs(['componentWillReceiveProps']);
+LogBox.ignoreLogs(['componentWillMount']);
 
 export default class Signup extends Component {
   constructor(props) {
@@ -34,7 +41,7 @@ export default class Signup extends Component {
     };
   }
 
-  signup=async(emailId, password, username)=>{
+  signup = async(emailId, password) => {
     const createUserByEmailAndPassword = await firebase.auth().createUserWithEmailAndPassword(emailId, password);
     createUserByEmailAndPassword.then((response)=>{
       // return Alert.alert("User Added Succesfully");
@@ -44,90 +51,161 @@ export default class Signup extends Component {
       //       "Oops! Fields can't be empty"
       //     )
       // }
-      return Alert.alert(
-        "User created successfully",
-        "Now login to your account to experience the next generation of our app",
-        [
-          {
-            text: "Next",
-            onPress: () => this.props.navigation.navigate('LoginScreen')
-          }
-        ]
-      );
+      if(response) {
+        this.props.navigation.navigate('Test')
+      }
+      // return Alert.alert(
+      //   "User created successfully",
+      //   "Now login to your account to experience the next generation of our app",
+      //   [
+      //     {
+      //       text: "Next",
+      //       onPress: () => this.props.navigation.navigate('LoginScreen')
+      //     }
+      //   ]
+      // );
     })
     .catch(function(error){
         var errorCode = error.code;
         var errorMssg = error.message;
         return Alert.alert("We have found a problem ",errorMssg);
-    })
+    });
+  }
 
-    // db.firebase()
-    //   .collection('Users')
-    //   .add({
-    //     dateOfCreation: firebase.firestore.Timestamp.now().toDate(),
-    //     username: this.state.username
-    //   })
+  usernameRegister = async() => {
+    const users = await db.firebase();
+      users.collection('Users')
+      .add({
+        dateOfCreation: firebase.firestore.Timestamp.now().toDate(),
+        username: this.state.username
+      })
   }
 
   render() {
     return (
       <KeyboardAvoidingView style={styles.container}>
         <SafeAreaView style={styles.androidsav}/>
+          {/* <ImageBackground
+            source={require('../assets/bg4.gif')}
+            resizeMode="cover"
+            resizeMethod="resize"
+            style={{
+              flex: 1,
+              justifyContent: "center",
+              width: "100%",
+              height: "100%",
+              // position: 'absolute', top: 0, left: 0
+            }}
+          > */}
+          <Image
+            source={require('../assets/headeranimation.gif')}
+            style={{
+              width: 150,
+              height: 150,
+              justifyContent: 'center',
+              alignSelf: 'center',
+              marginTop: 150,
+              marginLeft: -100
+            }}
+          />
+
           <View style={styles.headerTitleContainer}>
-            <Text style={{fontWeight: "bold",fontSize: 30}}>Welcome,</Text>
-            <Text style={{fontWeight: "bold",fontSize: 25}}>Create your account</Text>
+            <Text style={{fontWeight: "bold",fontSize: 30,color:'#02E7DE', letterSpacing: 0.5}}>Hey Welcome,</Text>
+            <Text style={{fontWeight: "300",fontSize: 22,color:'#B0C6C6', marginTop: 3}}>Create your account!</Text>
           </View>
-              <TextInput
+
+          {/* 
+           * Three TextInputs for -
+           * i) Username(No)
+           * ii) Email
+           * iii) Password
+           * 
+          */}
+          <View style={{
+            marginTop: 15
+          }}>
+            <View style={{
+               marginLeft: 10,
+               padding: 0
+            }}>
+              {/* <TextInput
                   style={styles.inputBox1}
                   value={this.state.username}
                   onChangeText={username => this.setState({ username:username })}
-                  placeholder='Username'
+                  leftIcon="person-add-outline"
+                  leftIconType="ion"
+                  leftIconSize={27}
+                  label='  Username'
                   autoCapitalize='none'
                   // autoFocus={true}
-                  placeholderTextColor="#000"
-              />
+                  placeholderTextColor="#AEB7C4"
+                  inlineImageLeft="username"
+                  inlineImagePadding={2}  
+                  underlineColorAndroid="transparent" 
+              /> */}
+              {/* <Hideo
+                iconClass={FontAwesomeIcon}
+                iconName={'envelope'}
+                iconColor={'white'}
+                // this is used as backgroundColor of icon container view.
+                iconBackgroundColor={'#f2a59d'}
+                inputStyle={{ color: '#464949' }}
+                style={{
+                  width: 200,
+                  height: 40
+                }}
+              /> */}
               <TextInput
                   style={styles.inputBox2}
                   value={this.state.email}
                   keyboardType="email-address"
                   onChangeText={email => this.setState({ email:email })}
-                  placeholder='Email'
+                  leftIcon="mail-outline"
+                  leftIconType="ion"
+                  leftIconSize={27}
+                  label='  Email'
                   autoCapitalize='none'
                   // autoFocus={true}
-                  placeholderTextColor="#000"
+                  placeholderTextColor="#AEB7C4"
               />
               <TextInput
                   style={styles.inputBox3}
                   value={this.state.password}
                   onChangeText={password => this.setState({ password:password })}
-                  placeholder='Password'
+                  leftIcon="lock-closed-outline"
+                  leftIconType="ion"
+                  leftIconSize={27}
+                  label='  Password'
                   secureTextEntry={true}
-                  placeholderTextColor="#000"
+                  placeholderTextColor="#AEB7C4"
               />
-              <TouchableOpacity style={styles.loginNavigate} onPress={()=>this.props.navigation.navigate('LoginScreen')}>
-                <Text style={styles.loginNavigateText, {fontWeight: '600', fontSize: 16, width: 250}}>
-                  Already have an account? Login 
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={{marginTop: -10, marginLeft: -158}}>
-                <Text style={{fontWeight: '600'}}>
-                  Forgot Password? 
-                </Text>
-              </TouchableOpacity>
+              </View>
               {/* <TouchableOpacity style={styles.button} onPress={()=>this.signup(this.state.email, this.state.password)}>
                   <Text style={styles.buttonText}>Sign Up</Text>
                   <AntDesign name="arrowright" size={24} color="lightgreen" style={{
                     marginTop: 2,
                     marginLeft: 12
                   }} />
-              </TouchableOpacity> */}
-              <TouchableOpacity style={styles.examplebutton} onPress={()=>this.signup(this.state.email, this.state.password, this.state.username)}>
+              </TouchableOpacity> , this.usernameRegister*/}
+              <TouchableOpacity style={styles.examplebutton} onPress={()=>this.signup(this.state.email, this.state.password)}>
                   <Text style={styles.buttonText}>Sign Up</Text>
                   <AntDesign name="arrowright" size={30} color="lightgreen" style={{
                     marginTop: 2,
-                    marginLeft: 20
+                    marginLeft: 15
                   }} />
               </TouchableOpacity>
+              <TouchableOpacity style={styles.loginNavigate} onPress={()=>this.props.navigation.navigate('LoginScreen')}>
+                <Text style={styles.loginNavigateText, {fontWeight: '600', fontSize: 16, width: 250, color: "#AEB7C4"}}>
+                  Already have an account? Login 
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={{marginTop: -10, marginLeft: 40}}>
+                <Text style={{fontWeight: '600', color: "#AEB7C4"}}>
+                  Forgot Password? 
+                </Text>
+              </TouchableOpacity>
+            </View>
+            {/* </ImageBackground> */}
         </KeyboardAvoidingView>
     );
   }
@@ -139,55 +217,77 @@ const styles = StyleSheet.create({
   },
   container: {
       flex: 1,
-      // backgroundColor: '#EEF6F6',
-      alignItems: 'center',
-      justifyContent: 'center'
+      backgroundColor: '#FFFFFF', //F0F2F4
+      // alignItems: 'center',
+      // justifyContent: 'center'
   },
   inputBox1: {
       width: '85%',
       padding: 15,
       fontSize: 16,
-      borderColor: '#0100FF',
-      borderBottomWidth: 0.5,
-      borderTopWidth: 0.5,
+      // borderColor: '#0100FF',
+      // borderBottomWidth: 0.5,
+      // borderTopWidth: 0.5,
       // textAlign: 'center',
-      borderTopRightRadius: 15,
-      backgroundColor: '#ffffff',
+      borderTopRightRadius: 5,
+      borderBottomRightRadius: 5,
+      backgroundColor: '#F1F4F8',
       alignItems: 'center',
       justifyContent: 'center',
-      marginLeft: -55,
+      marginLeft: 0,
       height: 70,
-      marginTop: 50,
+      marginTop: 180,
+      shadowColor: '#B0C6C6',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.8,
+      shadowRadius: 2,  
+      elevation: 3,
+      // borderTopWidth: 0,
+      // borderTopColor: 'transparent'
   },
   inputBox2: {
     width: '85%',
     padding: 15,
     fontSize: 16,
-    borderColor: '#00FF21',
+    // borderColor: '#00FF21',
     borderTopWidth: 0,
-    borderBottomWidth: 1,
+    // borderBottomWidth: 1,
     // textAlign: 'center',
-    borderBottomRightRadius: 0,
-    backgroundColor: '#ffffff',
+    borderBottomRightRadius: 5,
+    borderTopRightRadius: 5,
+    backgroundColor: '#F1F4F8',
     alignItems: 'center',
     justifyContent: 'center',
-    marginLeft: -55,
+    marginLeft: 0,
     height: 70,
+    marginTop: 10,
+    shadowColor: '#B0C6C6',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,  
+    elevation: 3,
 },
   inputBox3: {
     width: '85%',
     padding: 15,
     fontSize: 16,
-    borderColor: '#FF0000',
+    // borderColor: '#FF0000',
     borderTopWidth: 0,
-    borderBottomWidth: 0.5,
+    // borderBottomWidth: 0.5,
     // textAlign: 'center',
-    borderBottomRightRadius: 15,
-    backgroundColor: '#ffffff',
+    borderBottomRightRadius: 5,
+    borderTopRightRadius: 5,
+    backgroundColor: '#F1F4F8',
     alignItems: 'center',
     justifyContent: 'center',
-    marginLeft: -55,
+    marginLeft: 0,
     height: 70,
+    marginTop: 10,
+    shadowColor: '#B0C6C6',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,  
+    elevation: 3
   },
   button: {
       marginTop: 30,
@@ -205,11 +305,11 @@ const styles = StyleSheet.create({
       flexDirection: 'row'
   },
   buttonText: {
-      fontSize: 20,
+      fontSize: 22,
       fontWeight: 'bold',
       color: '#fff',
       marginTop: 0,
-      marginLeft: 70
+      marginLeft: 60
   },
   buttonSignup: {
       fontSize: 12
@@ -218,11 +318,11 @@ const styles = StyleSheet.create({
     width: 215,
     height: 50,
     backgroundColor: 'transparent',
-    marginLeft: -60,
-    marginTop: 20
+    marginLeft: 40,
+    marginTop: 0
   },
   loginNavigateText: {
-    color: '#1F2121',
+    color: '#FFFFFF',
     fontSize: 15,
   },
   headerTitleContainer: {
@@ -231,17 +331,23 @@ const styles = StyleSheet.create({
     left: 25
   },
   examplebutton: {
-      marginTop: 30,
+      marginTop: 25,
       marginBottom: 20,
       paddingVertical: 5,
       alignItems: 'center',
       backgroundColor: '#00A1FF',
       borderColor: '#F6820D',
       borderWidth: 0,
-      borderRadius: 30,
-      width: '60%',
-      height: 55,
-      marginLeft: -10,
-      flexDirection: 'row'
+      borderRadius: 40,
+      width: '55%',
+      height: 65,
+      marginLeft: 50,
+      flexDirection: 'row',
+      shadowColor: '#B0C6C6',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.8,
+      shadowRadius: 2,  
+      elevation: 5,
   }
 });
+// TextInput, 
