@@ -14,10 +14,10 @@ import {
   Image,
   ImageBackground,
   SafeAreaView, StatusBar,
-  LogBox
+  LogBox, ActivityIndicator
 } from 'react-native';
-import db from '../config.js';
-import * as firebase from 'firebase';
+// import db from '../config.js';
+// import * as firebase from 'firebase';
 import { Feather } from 'react-native-vector-icons';
 import { AntDesign } from 'react-native-vector-icons';
 import { Header } from 'react-native-elements/dist/header/Header';
@@ -27,6 +27,7 @@ import { Bold } from 'react-native-feather';
 import TextInput from 'react-native-textinput-with-icons';
 import { Hideo } from 'react-native-textinput-effects';
 import _ from 'lodash';
+import LoginScreen from './LoginScreen';
 
 LogBox.ignoreLogs(['componentWillReceiveProps']);
 LogBox.ignoreLogs(['componentWillMount']);
@@ -41,18 +42,61 @@ export default class Signup extends Component {
     };
   }
 
-  signup = async(emailId, password) => {
-    const createUserByEmailAndPassword = await firebase.auth().createUserWithEmailAndPassword(emailId, password);
-    createUserByEmailAndPassword.then((response)=>{
-      // return Alert.alert("User Added Succesfully");
-      // this.props.navigation.navigate('LoginScreen');
-      // if(this.state.username.length < 0 || this.state.email.length < 0 || this.state.password.length < 0) {
-      //     Alert.alert(
-      //       "Oops! Fields can't be empty"
-      //     )
-      // }
+signup = async(emailId, password) => {
+  if(emailId, password) {
+    try {   
+      const response = await firebase.auth().createUserWithEmailAndPassword(emailId, password);
       if(response) {
-        this.props.navigation.navigate('Test')
+        this.props.navigation.navigate('LoginScreen')
+      }
+    // return Alert.alert("User Added Succesfully");
+    // this.props.navigation.navigate('LoginScreen');
+    // if(this.state.username.length < 0 || this.state.email.length < 0 || this.state.password.length < 0) {
+    //     Alert.alert(
+    //       "Oops! Fields can't be empty"
+    //     )
+    // }
+    } catch (error) {
+      console.log(error.messsage);
+      switch (error.code) {
+        case 'auth/user-not-found':
+            Alert.alert(
+                "Oops!",
+                "User not found, please signup",
+                [
+                  {
+                    text: "Signup",
+                    onPress: ()=>{this.props.navigation.navigate('SignUp')}
+                  },
+                  {
+                    text: "OK",
+                  }
+                ]
+              );
+            break;
+        case 'auth/invalid-email':
+            Alert.alert(
+                "Oops!",
+                "Please enter a valid email",
+                [
+                  {
+                    text: "OK",
+                  }
+                ]
+              );
+            break;
+    }
+    }
+  }else {
+        Alert.alert(
+            "Oops!",
+            "Enter the Email and Password",
+            [
+              {
+                text: "OK",
+              }
+            ]
+          );
       }
       // return Alert.alert(
       //   "User created successfully",
@@ -64,13 +108,8 @@ export default class Signup extends Component {
       //     }
       //   ]
       // );
-    })
-    .catch(function(error){
-        var errorCode = error.code;
-        var errorMssg = error.message;
-        return Alert.alert("We have found a problem ",errorMssg);
-    });
-  }
+    }
+  
 
   usernameRegister = async() => {
     const users = await db.firebase();
@@ -84,6 +123,7 @@ export default class Signup extends Component {
   render() {
     return (
       <KeyboardAvoidingView style={styles.container}>
+        {/* <ActivityIndicator size="large" color="#00ff00" /> */}
         <SafeAreaView style={styles.androidsav}/>
           {/* <ImageBackground
             source={require('../assets/bg4.gif')}
@@ -163,10 +203,12 @@ export default class Signup extends Component {
                   leftIcon="mail-outline"
                   leftIconType="ion"
                   leftIconSize={27}
+                  leftIconColor="#2D8EFF"
                   label='  Email'
                   autoCapitalize='none'
                   // autoFocus={true}
                   placeholderTextColor="#AEB7C4"
+                  underlineActiveColor="#80FF00"
               />
               <TextInput
                   style={styles.inputBox3}
@@ -175,9 +217,11 @@ export default class Signup extends Component {
                   leftIcon="lock-closed-outline"
                   leftIconType="ion"
                   leftIconSize={27}
+                  leftIconColor="#33FF00"
                   label='  Password'
                   secureTextEntry={true}
                   placeholderTextColor="#AEB7C4"
+                  underlineActiveColor="#00FDFF"
               />
               </View>
               {/* <TouchableOpacity style={styles.button} onPress={()=>this.signup(this.state.email, this.state.password)}>
@@ -199,8 +243,8 @@ export default class Signup extends Component {
                   Already have an account? Login 
                 </Text>
               </TouchableOpacity>
-              <TouchableOpacity style={{marginTop: -10, marginLeft: 40}}>
-                <Text style={{fontWeight: '600', color: "#AEB7C4"}}>
+              <TouchableOpacity style={{marginTop: -15, marginLeft: 108}}>
+                <Text style={{fontWeight: '600', color: "#2FA2FF", fontSize: 15}}>
                   Forgot Password? 
                 </Text>
               </TouchableOpacity>
@@ -217,7 +261,7 @@ const styles = StyleSheet.create({
   },
   container: {
       flex: 1,
-      backgroundColor: '#FFFFFF', //F0F2F4
+      backgroundColor: '#2D2F2B', //F0F2F4
       // alignItems: 'center',
       // justifyContent: 'center'
   },
@@ -318,7 +362,7 @@ const styles = StyleSheet.create({
     width: 215,
     height: 50,
     backgroundColor: 'transparent',
-    marginLeft: 40,
+    marginLeft: 60,
     marginTop: 0
   },
   loginNavigateText: {
@@ -338,10 +382,10 @@ const styles = StyleSheet.create({
       backgroundColor: '#00A1FF',
       borderColor: '#F6820D',
       borderWidth: 0,
-      borderRadius: 40,
+      borderRadius: 10,
       width: '55%',
       height: 65,
-      marginLeft: 50,
+      marginLeft: 75,
       flexDirection: 'row',
       shadowColor: '#B0C6C6',
       shadowOffset: { width: 0, height: 2 },

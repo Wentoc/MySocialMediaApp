@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, TextInput, Alert } from 'react-native';
-import db from '../config'
+// import db from '../config'
 
 export default class Test extends Component {
   constructor(props) {

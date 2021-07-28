@@ -9,43 +9,8 @@ import { useSafeAreaInsets, SafeAreaProvider } from 'react-native-safe-area-cont
 import { SafeAreaView } from 'react-navigation';
 import { StatusBar } from 'react-native';
 import Header from '../component/Header';
-
-const Tab = createMaterialTopTabNavigator();
-
-const MyTabs = ()=> {
-  const insets = useSafeAreaInsets();
-  return (
-    <ScrollView horizontal={true}>
-      <Tab.Navigator
-        initialRouteName="HomeScreen"
-        tabBarOptions={{
-          activeTintColor: '#e91e63',
-          labelStyle: { fontSize: 12 },
-          style: { backgroundColor: '#000', marginTop: -1 },
-          // showLabel: false
-        }}
-      >
-        <Tab.Screen
-          name="HomeScreen"
-          component={HomeScreen}
-          options={{ tabBarLabel: 'Home', tabBarIcon:({ tintColor })=>(
-            <Feather name="home" size={30} color={'#F93680'} />
-          )}}
-        />
-        <Tab.Screen
-          name="WriteScreen"
-          component={WriteScreen}
-          options={{ tabBarLabel: 'Post' }}
-        />
-        <Tab.Screen
-          name="ProfileScreen"
-          component={ProfileScreen}
-          options={{ tabBarLabel: 'Profile' }}
-        />
-      </Tab.Navigator>
-    </ScrollView>
-  );
-}
+import WriteScreen from './WriteScreen';
+import ProfileScreen from './ProfileScreen';
 
 export default class HomeScreen extends React.Component {
   constructor(props) {
@@ -64,8 +29,7 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <SafeAreaView style={styles.droidSafeArea}/>
-        <Header/>
-        <MyTabs/>
+        {/* <Header/> */}
         
             <ScrollView
               showsHorizontalScrollIndicator={false}
@@ -89,7 +53,7 @@ export default class HomeScreen extends React.Component {
       backgroundColor: '#fff',
     },
     headerBar:{
-      width: '100%',
+      width: '10%',
       height: 0,
       backgroundColor: '#F8F0F0',
       flexDirection: 'row',

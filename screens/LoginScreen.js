@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, TextInput, StyleSheet, TouchableOpacity, Text, Button, KeyboardAvoidingView, Alert } from 'react-native';
 import { Header } from 'react-native-elements/dist/header/Header';
-import * as firebase from 'firebase';
-import db from '../config.js';
+// import * as firebase from 'firebase';
+// import db from '../config.js';
 import HomeScreen from './HomeScreen.js';
 
 export default class Login extends Component {
