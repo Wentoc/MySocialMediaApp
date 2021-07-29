@@ -28,6 +28,8 @@ import TextInput from 'react-native-textinput-with-icons';
 import { Hideo } from 'react-native-textinput-effects';
 import _ from 'lodash';
 import LoginScreen from './LoginScreen';
+import { Makiko } from 'react-native-textinput-effects';
+import { Ionicons } from 'react-native-vector-icons/Ionicons'
 
 LogBox.ignoreLogs(['componentWillReceiveProps']);
 LogBox.ignoreLogs(['componentWillMount']);
@@ -124,7 +126,8 @@ signup = async(emailId, password) => {
     return (
       <KeyboardAvoidingView style={styles.container}>
         {/* <ActivityIndicator size="large" color="#00ff00" /> */}
-        <SafeAreaView style={styles.androidsav}/>
+        <SafeAreaView/> 
+        {/*  style={styles.androidsav} */}
           {/* <ImageBackground
             source={require('../assets/bg4.gif')}
             resizeMode="cover"
@@ -137,7 +140,7 @@ signup = async(emailId, password) => {
               // position: 'absolute', top: 0, left: 0
             }}
           > */}
-          <Image
+          {/* <Image
             source={require('../assets/headeranimation.gif')}
             style={{
               width: 150,
@@ -147,12 +150,20 @@ signup = async(emailId, password) => {
               marginTop: 150,
               marginLeft: -100
             }}
-          />
-
+          /> */}
+        <ImageBackground
+         source={require('../assets/bg2.png')}
+         style={{
+           width: "100%",
+           height: "60%",
+           resizeMode: "cover"
+         }}
+        >
           <View style={styles.headerTitleContainer}>
-            <Text style={{fontWeight: "bold",fontSize: 30,color:'#02E7DE', letterSpacing: 0.5}}>Hey Welcome,</Text>
-            <Text style={{fontWeight: "300",fontSize: 22,color:'#B0C6C6', marginTop: 3}}>Create your account!</Text>
+            <Text style={{fontWeight: "bold",fontSize: 30,color:'#fff', letterSpacing: 0.5}}>Hey Welcome,</Text>
+            <Text style={{fontWeight: "300",fontSize: 22,color:'white', marginTop: 3}}>Create your account!</Text>
           </View>
+        </ImageBackground>
 
           {/* 
            * Three TextInputs for -
@@ -162,10 +173,10 @@ signup = async(emailId, password) => {
            * 
           */}
           <View style={{
-            marginTop: 15
+            marginTop: -240
           }}>
             <View style={{
-               marginLeft: 10,
+               marginLeft: 17,
                padding: 0
             }}>
               {/* <TextInput
@@ -195,7 +206,40 @@ signup = async(emailId, password) => {
                   height: 40
                 }}
               /> */}
-              <TextInput
+            
+            <Makiko
+              label={'Email'}
+              iconClass={FontAwesomeIcon}
+              iconName={'envelope'}
+              iconColor={'#2D8EFF'}
+              inputPadding={16}
+              inputStyle={{ color: '#000000', fontSize: 17 }}
+              style={styles.inputBox2}
+              value={this.state.email}
+              keyboardType="email-address"
+              onChangeText={email => this.setState({ email:email })}
+              autoCapitalize='none'
+            />
+
+            <Makiko
+              label={'Password'}
+              iconClass={FontAwesomeIcon}
+              iconName={'lock'}
+              iconColor={'#2D8EFF'}
+              inputPadding={16}
+              inputStyle={{ color: '#000000', fontSize: 17, width: "90%" }}
+              style={styles.inputBox2}
+              value={this.state.email}
+              keyboardType="email-address"
+              onChangeText={email => this.setState({ email:email })}
+              autoCapitalize='none'
+              style={styles.inputBox3}
+              value={this.state.password}
+              onChangeText={password => this.setState({ password:password })}
+              secureTextEntry={true}
+            />
+
+              {/* <TextInput
                   style={styles.inputBox2}
                   value={this.state.email}
                   keyboardType="email-address"
@@ -222,7 +266,7 @@ signup = async(emailId, password) => {
                   secureTextEntry={true}
                   placeholderTextColor="#AEB7C4"
                   underlineActiveColor="#00FDFF"
-              />
+              /> */}
               </View>
               {/* <TouchableOpacity style={styles.button} onPress={()=>this.signup(this.state.email, this.state.password)}>
                   <Text style={styles.buttonText}>Sign Up</Text>
@@ -233,22 +277,30 @@ signup = async(emailId, password) => {
               </TouchableOpacity> , this.usernameRegister*/}
               <TouchableOpacity style={styles.examplebutton} onPress={()=>this.signup(this.state.email, this.state.password)}>
                   <Text style={styles.buttonText}>Sign Up</Text>
-                  <AntDesign name="arrowright" size={30} color="lightgreen" style={{
+                  <AntDesign name="arrowright" size={30} color="#ffffff" style={{
                     marginTop: 2,
                     marginLeft: 15
                   }} />
               </TouchableOpacity>
+
+            <View style={{
+              marginLeft: 8
+            }}>
               <TouchableOpacity style={styles.loginNavigate} onPress={()=>this.props.navigation.navigate('LoginScreen')}>
                 <Text style={styles.loginNavigateText, {fontWeight: '600', fontSize: 16, width: 250, color: "#AEB7C4"}}>
                   Already have an account? Login 
                 </Text>
               </TouchableOpacity>
-              <TouchableOpacity style={{marginTop: -15, marginLeft: 108}}>
+              {/* <TouchableOpacity style={{marginTop: -15, marginLeft: 108}}>
                 <Text style={{fontWeight: '600', color: "#2FA2FF", fontSize: 15}}>
                   Forgot Password? 
                 </Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             </View>
+            </View>
+          <View style={styles.developerName}>
+            <Text style={{ color: "#2687FF", fontSize: 20, textAlign: 'center', position: 'absolute', top: 6.5, alignSelf: 'center', }}>By Wentoc</Text>
+          </View>
             {/* </ImageBackground> */}
         </KeyboardAvoidingView>
     );
@@ -261,7 +313,7 @@ const styles = StyleSheet.create({
   },
   container: {
       flex: 1,
-      backgroundColor: '#2D2F2B', //F0F2F4
+      backgroundColor: '#D5F9FF', //F0F2F4, 2D2F2B
       // alignItems: 'center',
       // justifyContent: 'center'
   },
@@ -269,10 +321,6 @@ const styles = StyleSheet.create({
       width: '85%',
       padding: 15,
       fontSize: 16,
-      // borderColor: '#0100FF',
-      // borderBottomWidth: 0.5,
-      // borderTopWidth: 0.5,
-      // textAlign: 'center',
       borderTopRightRadius: 5,
       borderBottomRightRadius: 5,
       backgroundColor: '#F1F4F8',
@@ -288,21 +336,20 @@ const styles = StyleSheet.create({
       elevation: 3,
       // borderTopWidth: 0,
       // borderTopColor: 'transparent'
+      // borderColor: '#0100FF',
+      // borderBottomWidth: 0.5,
+      // borderTopWidth: 0.5,
+      // textAlign: 'center',
   },
   inputBox2: {
-    width: '85%',
+    width: '90%',
     padding: 15,
     fontSize: 16,
-    // borderColor: '#00FF21',
     borderTopWidth: 0,
-    // borderBottomWidth: 1,
-    // textAlign: 'center',
-    borderBottomRightRadius: 5,
-    borderTopRightRadius: 5,
     backgroundColor: '#F1F4F8',
     alignItems: 'center',
     justifyContent: 'center',
-    marginLeft: 0,
+    marginLeft: 10,
     height: 70,
     marginTop: 10,
     shadowColor: '#B0C6C6',
@@ -310,28 +357,38 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 2,  
     elevation: 3,
+    // alignSelf: 'center',
+    borderRadius: 10,
+    // borderColor: '#00FF21',
+    // borderBottomWidth: 1,
+    // textAlign: 'center',
+    // borderBottomRightRadius: 5,
+    // borderTopRightRadius: 5,
 },
   inputBox3: {
-    width: '85%',
+    width: '90%',
     padding: 15,
     fontSize: 16,
-    // borderColor: '#FF0000',
     borderTopWidth: 0,
-    // borderBottomWidth: 0.5,
-    // textAlign: 'center',
-    borderBottomRightRadius: 5,
-    borderTopRightRadius: 5,
     backgroundColor: '#F1F4F8',
     alignItems: 'center',
     justifyContent: 'center',
-    marginLeft: 0,
+    marginLeft: 10,
     height: 70,
     marginTop: 10,
     shadowColor: '#B0C6C6',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
     shadowRadius: 2,  
-    elevation: 3
+    elevation: 3,
+    borderRadius: 10,
+    // display: 'flex',
+    // flex: 1
+    // borderColor: '#FF0000',
+    // borderBottomWidth: 0.5,
+    // textAlign: 'center',
+    // borderBottomRightRadius: 5,
+    // borderTopRightRadius: 5,
   },
   button: {
       marginTop: 30,
@@ -353,7 +410,7 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       color: '#fff',
       marginTop: 0,
-      marginLeft: 60
+      marginLeft: 80
   },
   buttonSignup: {
       fontSize: 12
@@ -383,15 +440,30 @@ const styles = StyleSheet.create({
       borderColor: '#F6820D',
       borderWidth: 0,
       borderRadius: 10,
-      width: '55%',
+      width: '70%',
       height: 65,
-      marginLeft: 75,
+      alignSelf: 'center',
+      // marginLeft: 55,
       flexDirection: 'row',
       shadowColor: '#B0C6C6',
       shadowOffset: { width: 0, height: 2 },
       shadowOpacity: 0.8,
       shadowRadius: 2,  
       elevation: 5,
+  },
+  developerName: {
+    position: 'absolute',
+    bottom: 30,
+    alignSelf: 'center',
+    width: "50%",
+    height: 40,
+    backgroundColor: "#fff",
+    shadowColor: '#B0C6C6',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,  
+    elevation: 3,
+    borderRadius: 10,
   }
 });
 // TextInput, 

@@ -136,8 +136,8 @@ const MyTabs = () => {
 // );
 const switchNavigator = createSwitchNavigator({
   // Test:{screen:Test},
-  SignupScreen:{screen:SignupScreen},
   LoginScreen:{screen:LoginScreen},
+  SignupScreen:{screen:SignupScreen},
   MyTabs:{screen:MyTabs},
 })
 const AppContainer = createAppContainer(switchNavigator);
