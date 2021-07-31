@@ -1,0 +1,359 @@
+
+      // response.onAuthStateChanged((user) => {
+      //   if(user) {
+      //     this.props.navigation.navigate('LoginScreen')
+            
+      //   } else {
+      //       this.setState({
+      //         authenticated: false
+      //       })
+      //   }
+      // })
+      // this.setState({
+      //   email: emailId,
+      //   password: password
+      // })
+    // return Alert.alert("User Added Succesfully");
+    // this.props.navigation.navigate('LoginScreen');
+    // if(this.state.username.length < 0 || this.state.email.length < 0 || this.state.password.length < 0) {
+    //     Alert.alert(
+    //       "Oops! Fields can't be empty"
+    //     )
+    // }
+
+    
+          // firebase.auth().onAuthStateChanged(function(user) {
+          //   if (user) {
+          //     this.props.navigation.navigate('LoginScreen');
+          //     // User is signed in.
+          //     // Only after this happens does my app redirect from the login to the main screen and start making authenticated calls with the token. This is what I meant when I said the user is authenticated, but it still fails intermittently after this.
+          //   } else {
+          //     // No user is signed in.
+          //     // This always redirects back to the login screen.
+          //   }
+          // });
+        // Alert.alert("Signed Up")
+
+        
+      // return Alert.alert(
+      //   "User created successfully",
+      //   "Now login to your account to experience the next generation of our app",
+      //   [
+      //     {
+      //       text: "Next",
+      //       onPress: () => this.props.navigation.navigate('LoginScreen')
+      //     }
+      //   ]
+      // );
+
+      
+        {/*  style={styles.androidsav} */}
+          {/* <ImageBackground
+            source={require('../assets/bg4.gif')}
+            resizeMode="cover"
+            resizeMethod="resize"
+            style={{
+              flex: 1,
+              justifyContent: "center",
+              width: "100%",
+              height: "100%",
+              // position: 'absolute', top: 0, left: 0
+            }}
+          > */}
+          {/* <Image
+            source={require('../assets/headeranimation.gif')}
+            style={{
+              width: 150,
+              height: 150,
+              justifyContent: 'center',
+              alignSelf: 'center',
+              marginTop: 150,
+              marginLeft: -100
+            }}
+          /> */}
+
+          
+              {/* <TextInput
+                  style={styles.inputBox1}
+                  value={this.state.username}
+                  onChangeText={username => this.setState({ username:username })}
+                  leftIcon="person-add-outline"
+                  leftIconType="ion"
+                  leftIconSize={27}
+                  label='  Username'
+                  autoCapitalize='none'
+                  // autoFocus={true}
+                  placeholderTextColor="#AEB7C4"
+                  inlineImageLeft="username"
+                  inlineImagePadding={2}  
+                  underlineColorAndroid="transparent" 
+              /> */}
+              {/* <Hideo
+                iconClass={FontAwesomeIcon}
+                iconName={'envelope'}
+                iconColor={'white'}
+                // this is used as backgroundColor of icon container view.
+                iconBackgroundColor={'#f2a59d'}
+                inputStyle={{ color: '#464949' }}
+                style={{
+                  width: 200,
+                  height: 40
+                }}
+              /> */}
+            
+            
+              {/* <TouchableOpacity style={styles.button} onPress={()=>this.signup(this.state.email, this.state.password)}>
+                  <Text style={styles.buttonText}>Sign Up</Text>
+                  <AntDesign name="arrowright" size={24} color="lightgreen" style={{
+                    marginTop: 2,
+                    marginLeft: 12
+                  }} />
+              </TouchableOpacity> , this.usernameRegister*/}
+
+              
+              {/* <TextInput
+                  style={styles.inputBox2}
+                  value={this.state.email}
+                  keyboardType="email-address"
+                  onChangeText={email => this.setState({ email:email })}
+                  leftIcon="mail-outline"
+                  leftIconType="ion"
+                  leftIconSize={27}
+                  leftIconColor="#2D8EFF"
+                  label='  Email'
+                  autoCapitalize='none'
+                  // autoFocus={true}
+                  placeholderTextColor="#AEB7C4"
+                  underlineActiveColor="#80FF00"
+              />
+              <TextInput
+                  style={styles.inputBox3}
+                  value={this.state.password}
+                  onChangeText={password => this.setState({ password:password })}
+                  leftIcon="lock-closed-outline"
+                  leftIconType="ion"
+                  leftIconSize={27}
+                  leftIconColor="#33FF00"
+                  label='  Password'
+                  secureTextEntry={true}
+                  placeholderTextColor="#AEB7C4"
+                  underlineActiveColor="#00FDFF"
+              /> */}
+
+              
+  //  container: {
+  //       flex: 1,
+  //       backgroundColor: '#EEF6F6',
+  //       alignItems: 'center',
+  //       justifyContent: 'center'
+  //   },
+  //   inputBox: {
+  //       width: '85%',
+  //       margin: 10,
+  //       padding: 15,
+  //       fontSize: 16,
+  //       borderColor: '#d3d3d3',
+  //       borderWidth: 1,
+  //       textAlign: 'center',
+  //       borderRadius: 5,
+  //       backgroundColor: '#ffffff'
+  //   },
+  //   button: {
+  //       marginTop: 30,
+  //       marginBottom: 20,
+  //       paddingVertical: 5,
+  //       alignItems: 'center',
+  //       backgroundColor: '#00A1FF',
+  //       borderColor: '#F6820D',
+  //       borderWidth: 0,
+  //       borderRadius: 5,
+  //       width: '85%',
+  //       height: 55,
+  //   },
+  //   buttonText: {
+  //       fontSize: 20,
+  //       fontWeight: 'bold',
+  //       color: '#fff',
+  //       marginTop: 9
+  //   },
+  //   buttonSignup: {
+  //       fontSize: 12
+  //   },
+  //   loginNavigate: {
+  //     width: 250,
+  //     height: 50,
+  //     backgroundColor: 'transparent',
+  //     marginLeft: 10
+  //   },
+  //   loginNavigateText: {
+  //     color: '#1F2121',
+  //     fontSize: 15,
+  //   }
+
+// TextInput, 
+
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum, ratione accusamus! Quia iusto hic enim ab dolorem expedita, est nisi odit rem? Quaerat hic beatae at dolore animi nemo quia.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum, ratione accusamus! Quia iusto hic enim ab dolorem expedita, est nisi odit rem? Quaerat hic beatae at dolore animi nemo quia.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum, ratione accusamus! Quia iusto hic enim ab dolorem expedita, est nisi odit rem? Quaerat hic beatae at dolore animi nemo quia.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum, ratione accusamus! Quia iusto hic enim ab dolorem expedita, est nisi odit rem? Quaerat hic beatae at dolore animi nemo quia.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum, ratione accusamus! Quia iusto hic enim ab dolorem expedita, est nisi odit rem? Quaerat hic beatae at dolore animi nemo quia.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum, ratione accusamus! Quia iusto hic enim ab dolorem expedita, est nisi odit rem? Quaerat hic beatae at dolore animi nemo quia.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum, ratione accusamus! Quia iusto hic enim ab dolorem expedita, est nisi odit rem? Quaerat hic beatae at dolore animi nemo quia.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum, ratione accusamus! Quia iusto hic enim ab dolorem expedita, est nisi odit rem? Quaerat hic beatae at dolore animi nemo quia.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum, ratione accusamus! Quia iusto hic enim ab dolorem expedita, est nisi odit rem? Quaerat hic beatae at dolore animi nemo quia.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum, ratione accusamus! Quia iusto hic enim ab dolorem expedita, est nisi odit rem? Quaerat hic beatae at dolore animi nemo quia.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum, ratione accusamus! Quia iusto hic enim ab dolorem expedita, est nisi odit rem? Quaerat hic beatae at dolore animi nemo quia.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum, ratione accusamus! Quia iusto hic enim ab dolorem expedita, est nisi odit rem? Quaerat hic beatae at dolore animi nemo quia.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum, ratione accusamus! Quia iusto hic enim ab dolorem expedita, est nisi odit rem? Quaerat hic beatae at dolore animi nemo quia.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum, ratione accusamus! Quia iusto hic enim ab dolorem expedita, est nisi odit rem? Quaerat hic beatae at dolore animi nemo quia.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum, ratione accusamus! Quia iusto hic enim ab dolorem expedita, est nisi odit rem? Quaerat hic beatae at dolore animi nemo quia.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum, ratione accusamus! Quia iusto hic enim ab dolorem expedita, est nisi odit rem? Quaerat hic beatae at dolore animi nemo quia.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum, ratione accusamus! Quia iusto hic enim ab dolorem expedita, est nisi odit rem? Quaerat hic beatae at dolore animi nemo quia.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum, ratione accusamus! Quia iusto hic enim ab dolorem expedita, est nisi odit rem? Quaerat hic beatae at dolore animi nemo quia.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum, ratione accusamus! Quia iusto hic enim ab dolorem expedita, est nisi odit rem? Quaerat hic beatae at dolore animi nemo quia.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum, ratione accusamus! Quia iusto hic enim ab dolorem expedita, est nisi odit rem? Quaerat hic beatae at dolore animi nemo quia.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum, ratione accusamus! Quia iusto hic enim ab dolorem expedita, est nisi odit rem? Quaerat hic beatae at dolore animi nemo quia.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum, ratione accusamus! Quia iusto hic enim ab dolorem expedita, est nisi odit rem? Quaerat hic beatae at dolore animi nemo quia.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum, ratione accusamus! Quia iusto hic enim ab dolorem expedita, est nisi odit rem? Quaerat hic beatae at dolore animi nemo quia.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

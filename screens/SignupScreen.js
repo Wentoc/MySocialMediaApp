@@ -29,9 +29,9 @@ import { Hideo } from 'react-native-textinput-effects';
 import _ from 'lodash';
 import LoginScreen from './LoginScreen';
 import { Makiko } from 'react-native-textinput-effects';
-import { Ionicons } from 'react-native-vector-icons/Ionicons'
-import { Audio } from 'expo-av'
-
+import { Ionicons } from 'react-native-vector-icons/Ionicons';
+import { Audio } from 'expo-av';
+import * as firebase from 'firebase'
 // const audio = require('../speech/signupspeech.mp3');
 
 // LogBox.ignoreLogs(['componentWillReceiveProps']);
@@ -46,7 +46,9 @@ export default class Signup extends Component {
       email: '',
       password: '',
       username: '',
-      sound: ''
+      sound: '',
+      authenticated: false,
+      isLoading: false
     };
   }
 
@@ -73,71 +75,94 @@ export default class Signup extends Component {
   }
 
 signup = async(emailId, password) => {
+
   if(emailId, password) {
-    try {   
-      const response = await firebase.auth().createUserWithEmailAndPassword(emailId, password);
-      if(response) {
-        this.props.navigation.navigate('LoginScreen')
-      }
-    // return Alert.alert("User Added Succesfully");
-    // this.props.navigation.navigate('LoginScreen');
-    // if(this.state.username.length < 0 || this.state.email.length < 0 || this.state.password.length < 0) {
-    //     Alert.alert(
-    //       "Oops! Fields can't be empty"
-    //     )
-    // }
-    } catch (error) {
-      console.log(error.messsage);
-      switch (error.code) {
-        case 'auth/user-not-found':
-            Alert.alert(
-                "Oops!",
-                "User not found, please signup",
-                [
-                  {
-                    text: "Signup",
-                    onPress: ()=>{this.props.navigation.navigate('SignUp')}
-                  },
-                  {
-                    text: "OK",
-                  }
-                ]
-              );
-            break;
-        case 'auth/invalid-email':
-            Alert.alert(
-                "Oops!",
-                "Please enter a valid email",
-                [
-                  {
-                    text: "OK",
-                  }
-                ]
-              );
-            break;
-    }
-    }
-  }else {
-        Alert.alert(
-            "Oops!",
-            "Enter the Email and Password",
-            [
-              {
-                text: "OK",
-              }
-            ]
-          );
-      }
-      // return Alert.alert(
-      //   "User created successfully",
-      //   "Now login to your account to experience the next generation of our app",
-      //   [
-      //     {
-      //       text: "Next",
-      //       onPress: () => this.props.navigation.navigate('LoginScreen')
-      //     }
-      //   ]
-      // );
+      try {
+        this.setState({
+          isLoading: true,
+        })
+      const response = await firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.state.email, this.state.password)
+        .then((res) => {
+          // res.user.updateProfile({
+          //   displayName: this.state.displayName
+          // })
+          console.log('User registered successfully!')
+          this.setState({
+            email: '', 
+            password: ''
+          })
+
+          if( response ) {
+            this.props.navigation.navigate('LoginScreen')
+          }
+        })      
+  }catch (error) {
+          console.log(error.messsage);
+        }
+     }
+
+  // if(emailId, password) { 
+  //   try {  
+  //     this.setState({
+  //       isLoading: true,
+  //     }) 
+  //     await firebase.auth().createUserWithEmailAndPassword(emailId, password)
+  //       .then((res) => {
+  //         console.log('User registered successfully!')
+  //         this.setState({
+  //           isLoading: false,
+  //           displayName: '',
+  //           email: '', 
+  //           password: ''
+  //         })
+  //         this.props.navigation.navigate('LoginScreen')
+  //       })
+      
+  //   } catch (error) {
+  //     console.log(error.messsage);
+  //     switch (error.code) {
+  //       case 'auth/user-not-found':
+  //           Alert.alert(
+  //               "Oops!",
+  //               "User not found, please signup",
+  //               [
+  //                 {
+  //                   text: "Signup",
+  //                   onPress: ()=>{this.props.navigation.navigate('SignUp')}
+  //                 },
+  //                 {
+  //                   text: "OK",
+  //                 }
+  //               ]
+  //             );
+  //           break;
+  //       case 'auth/invalid-email':
+  //           Alert.alert(
+  //               "Oops!",
+  //               "Please enter a valid email",
+  //               [
+  //                 {
+  //                   text: "OK",
+  //                 }
+  //               ]
+  //             );
+  //           break;
+  //         }
+  //       }
+  // }else if(emailId === '', password === '') {
+  //   Alert.alert(
+  //       "Oops!",
+  //       "Enter the Email and Password",
+  //       [
+  //         {
+  //           text: "OK",
+  //         }
+  //       ]
+  //     );
+    
+  //     }
     }
 
   usernameRegister = async() => {
@@ -150,190 +175,108 @@ signup = async(emailId, password) => {
   }
 
   render() {
-    return (
-      <KeyboardAvoidingView style={styles.container}>
-        {/* <ActivityIndicator size="large" color="#00ff00" /> */}
-        <SafeAreaView/> 
-        {/*  style={styles.androidsav} */}
-          {/* <ImageBackground
-            source={require('../assets/bg4.gif')}
-            resizeMode="cover"
-            resizeMethod="resize"
-            style={{
-              flex: 1,
-              justifyContent: "center",
-              width: "100%",
-              height: "100%",
-              // position: 'absolute', top: 0, left: 0
-            }}
-          > */}
-          {/* <Image
-            source={require('../assets/headeranimation.gif')}
-            style={{
-              width: 150,
-              height: 150,
-              justifyContent: 'center',
-              alignSelf: 'center',
-              marginTop: 150,
-              marginLeft: -100
-            }}
-          /> */}
-        <ImageBackground
-         source={require('../assets/bg2.png')}
-         style={{
-           width: "100%",
-           height: "60%",
-           resizeMode: "cover"
-         }}
-        >
-          <View style={styles.headerTitleContainer}>
-            <Text style={{fontWeight: "bold",fontSize: 30,color:'#fff', letterSpacing: 0.5}}>Hey Welcome,</Text>
-            <Text style={{fontWeight: "300",fontSize: 22,color:'white', marginTop: 3}}>Create your account!</Text>
-          </View>
-        </ImageBackground>
+    const { isLoading } = this.state;
+    if(this.state.isLoading) {
+      <View style={styles.preloader}>
+          <ActivityIndicator size="large" color="#9E9E9E"/>
+      </View>
+    }
+    
+      return (
+        <KeyboardAvoidingView style={styles.container}>
+          {/* <ActivityIndicator size="large" color="#00ff00" /> */}
+          <SafeAreaView/>
+          <ImageBackground
+          source={require('../assets/bg2.png')}
+          style={{
+            width: "100%",
+            height: "60%",
+            resizeMode: "cover"
+          }}
+          >
+            <View style={styles.headerTitleContainer}>
+              <Text style={{fontWeight: "bold",fontSize: 30,color:'#fff', letterSpacing: 0.5}}>Hey Welcome,</Text>
+              <Text style={{fontWeight: "300",fontSize: 22,color:'white', marginTop: 3}}>Create your account!</Text>
+            </View>
+          </ImageBackground>
 
-          {/* 
-           * Three TextInputs for -
-           * i) Username(No)
-           * ii) Email
-           * iii) Password
-           * 
-          */}
-          <View style={{
-            marginTop: -240
-          }}>
+            {/* 
+            * Three TextInputs for -
+            * i) Username(No)
+            * ii) Email
+            * iii) Password
+            * 
+            */}
             <View style={{
-               marginLeft: 17,
-               padding: 0
+              marginTop: -240
             }}>
-              {/* <TextInput
-                  style={styles.inputBox1}
-                  value={this.state.username}
-                  onChangeText={username => this.setState({ username:username })}
-                  leftIcon="person-add-outline"
-                  leftIconType="ion"
-                  leftIconSize={27}
-                  label='  Username'
-                  autoCapitalize='none'
-                  // autoFocus={true}
-                  placeholderTextColor="#AEB7C4"
-                  inlineImageLeft="username"
-                  inlineImagePadding={2}  
-                  underlineColorAndroid="transparent" 
-              /> */}
-              {/* <Hideo
+              <View style={{
+                marginLeft: 17,
+                padding: 0
+              }}>
+              <Makiko
+                label={'Email'}
                 iconClass={FontAwesomeIcon}
                 iconName={'envelope'}
-                iconColor={'white'}
-                // this is used as backgroundColor of icon container view.
-                iconBackgroundColor={'#f2a59d'}
-                inputStyle={{ color: '#464949' }}
-                style={{
-                  width: 200,
-                  height: 40
-                }}
-              /> */}
-            
-            <Makiko
-              label={'Email'}
-              iconClass={FontAwesomeIcon}
-              iconName={'envelope'}
-              iconColor={'#2D8EFF'}
-              inputPadding={16}
-              inputStyle={{ color: '#000000', fontSize: 17 }}
-              style={styles.inputBox2}
-              value={this.state.email}
-              keyboardType="email-address"
-              onChangeText={email => this.setState({ email:email })}
-              autoCapitalize='none'
-            />
-
-            <Makiko
-              label={'Password'}
-              iconClass={FontAwesomeIcon}
-              iconName={'lock'}
-              iconColor={'#2D8EFF'}
-              inputPadding={16}
-              inputStyle={{ color: '#000000', fontSize: 17, width: "90%" }}
-              style={styles.inputBox2}
-              value={this.state.email}
-              keyboardType="email-address"
-              onChangeText={email => this.setState({ email:email })}
-              autoCapitalize='none'
-              style={styles.inputBox3}
-              value={this.state.password}
-              onChangeText={password => this.setState({ password:password })}
-              secureTextEntry={true}
-            />
-
-              {/* <TextInput
-                  style={styles.inputBox2}
-                  value={this.state.email}
-                  keyboardType="email-address"
-                  onChangeText={email => this.setState({ email:email })}
-                  leftIcon="mail-outline"
-                  leftIconType="ion"
-                  leftIconSize={27}
-                  leftIconColor="#2D8EFF"
-                  label='  Email'
-                  autoCapitalize='none'
-                  // autoFocus={true}
-                  placeholderTextColor="#AEB7C4"
-                  underlineActiveColor="#80FF00"
+                iconColor={'#2D8EFF'}
+                inputPadding={16}
+                inputStyle={{ color: '#000000', fontSize: 17 }}
+                style={styles.inputBox2}
+                value={this.state.email}
+                keyboardType="email-address"
+                onChangeText={email => this.setState({ email:email })}
+                autoCapitalize='none'
               />
-              <TextInput
-                  style={styles.inputBox3}
-                  value={this.state.password}
-                  onChangeText={password => this.setState({ password:password })}
-                  leftIcon="lock-closed-outline"
-                  leftIconType="ion"
-                  leftIconSize={27}
-                  leftIconColor="#33FF00"
-                  label='  Password'
-                  secureTextEntry={true}
-                  placeholderTextColor="#AEB7C4"
-                  underlineActiveColor="#00FDFF"
-              /> */}
-              </View>
-              {/* <TouchableOpacity style={styles.button} onPress={()=>this.signup(this.state.email, this.state.password)}>
-                  <Text style={styles.buttonText}>Sign Up</Text>
-                  <AntDesign name="arrowright" size={24} color="lightgreen" style={{
-                    marginTop: 2,
-                    marginLeft: 12
-                  }} />
-              </TouchableOpacity> , this.usernameRegister*/}
-              <TouchableOpacity style={styles.examplebutton} onPress={()=>this.signup(this.state.email, this.state.password)}>
-                  <Text style={styles.buttonText}>Sign Up</Text>
-                  <AntDesign name="arrowright" size={30} color="#ffffff" style={{
-                    marginTop: 2,
-                    marginLeft: 15
-                  }} />
-              </TouchableOpacity>
 
-            <View style={{
-              marginLeft: 8
-            }}>
-              <TouchableOpacity style={styles.loginNavigate} onPress={()=>this.props.navigation.navigate('LoginScreen')}>
-                <Text style={styles.loginNavigateText, {fontWeight: '600', fontSize: 16, width: 250, color: "#AEB7C4"}}>
-                  Already have an account? Login 
-                </Text>
-              </TouchableOpacity>
-              {/* <TouchableOpacity style={{marginTop: -15, marginLeft: 108}}>
-                <Text style={{fontWeight: '600', color: "#2FA2FF", fontSize: 15}}>
-                  Forgot Password? 
-                </Text>
-              </TouchableOpacity> */}
+              <Makiko
+                label={'Password'}
+                iconClass={FontAwesomeIcon}
+                iconName={'lock'}
+                iconColor={'#2D8EFF'}
+                inputPadding={16}
+                inputStyle={{ color: '#000000', fontSize: 17, width: "90%" }}
+                autoCapitalize='none'
+                style={styles.inputBox3}
+                value={this.state.password}
+                onChangeText={password => this.setState({ password:password })}
+                secureTextEntry={true}
+              />
+
+                </View>
+
+                <TouchableOpacity style={styles.examplebutton} 
+                  onPress={()=>this.signup()  
+                }>
+                    <Text style={styles.buttonText}>Sign Up</Text>
+                    <AntDesign name="arrowright" size={30} color="#ffffff" style={{
+                      marginTop: 2,
+                      marginLeft: 15
+                    }} />
+                </TouchableOpacity>
+
+              <View style={{
+                marginLeft: 8
+              }}>
+                <TouchableOpacity style={styles.loginNavigate} onPress={()=>this.props.navigation.navigate('LoginScreen')}>
+                  <Text style={styles.loginNavigateText, {fontWeight: '600', fontSize: 16, width: 250, color: "#AEB7C4"}}>
+                    Already have an account? Login 
+                  </Text>
+                </TouchableOpacity>
+                {/* <TouchableOpacity style={{marginTop: -15, marginLeft: 108}}>
+                  <Text style={{fontWeight: '600', color: "#2FA2FF", fontSize: 15}}>
+                    Forgot Password? 
+                  </Text>
+                </TouchableOpacity> */}
+              </View>
+              </View>
+            <View style={styles.developerName}>
+              <Text style={{ color: "#2687FF", fontSize: 20, textAlign: 'center', position: 'absolute', top: 6.5, alignSelf: 'center', }}>By Wentoc</Text>
             </View>
-            </View>
-          <View style={styles.developerName}>
-            <Text style={{ color: "#2687FF", fontSize: 20, textAlign: 'center', position: 'absolute', top: 6.5, alignSelf: 'center', }}>By Wentoc</Text>
-          </View>
-            {/* </ImageBackground> */}
-        </KeyboardAvoidingView>
-    );
+              {/* </ImageBackground> */}
+          </KeyboardAvoidingView>
+      );
   }
 }
-
 const styles = StyleSheet.create({
   androidsav: {
     marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
@@ -491,6 +434,15 @@ const styles = StyleSheet.create({
     shadowRadius: 2,  
     elevation: 3,
     borderRadius: 10,
+  },
+  preloader: {
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#fff'
   }
 });
-// TextInput, 
