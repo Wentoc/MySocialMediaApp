@@ -90,6 +90,31 @@ const MyTabs = () => {
   );
 }
 
+const switchNavigator = createSwitchNavigator({
+  // Test:{screen:Test},
+  SignupScreen:{screen:SignupScreen},
+  LoginScreen:{screen:LoginScreen},
+  MyTabs:{screen:MyTabs},
+})
+const AppContainer = createAppContainer(switchNavigator);
+
+const styles = StyleSheet.create({
+  container:{
+    flex: 1,
+  },
+  headerBar:{
+    width: '100%',
+    height: 105,
+    backgroundColor: '#38e1ff',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
+
+AppRegistry.registerComponent('App', () => App);
+
+
 // const TabNavigator = createBottomTabNavigator(
 //   {
 //     HomeScreen: {
@@ -134,26 +159,3 @@ const MyTabs = () => {
 //       }
 //   }
 // );
-const switchNavigator = createSwitchNavigator({
-  // Test:{screen:Test},
-  LoginScreen:{screen:LoginScreen},
-  SignupScreen:{screen:SignupScreen},
-  MyTabs:{screen:MyTabs},
-})
-const AppContainer = createAppContainer(switchNavigator);
-
-const styles = StyleSheet.create({
-  container:{
-    flex: 1,
-  },
-  headerBar:{
-    width: '100%',
-    height: 105,
-    backgroundColor: '#38e1ff',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
-
-// AppRegistry.registerComponent('SocialMediaAppProject', () => App);

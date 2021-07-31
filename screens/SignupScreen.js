@@ -30,9 +30,14 @@ import _ from 'lodash';
 import LoginScreen from './LoginScreen';
 import { Makiko } from 'react-native-textinput-effects';
 import { Ionicons } from 'react-native-vector-icons/Ionicons'
+import { Audio } from 'expo-av'
 
-LogBox.ignoreLogs(['componentWillReceiveProps']);
-LogBox.ignoreLogs(['componentWillMount']);
+// const audio = require('../speech/signupspeech.mp3');
+
+// LogBox.ignoreLogs(['componentWillReceiveProps']);
+// LogBox.ignoreLogs(['componentWillMount']);
+
+LogBox.ignoreAllLogs(); 
 
 export default class Signup extends Component {
   constructor(props) {
@@ -41,7 +46,30 @@ export default class Signup extends Component {
       email: '',
       password: '',
       username: '',
+      sound: ''
     };
+  }
+
+  async componentDidMount() {
+    await this.AISpeechPlay()
+  }
+
+  // Welcome Speech for the user to get attracted
+  AISpeechPlay = async() => {
+    // await Audio.Sound.createAsync(
+    //   { uri: audio },
+    //   { shouldPlay: true }
+    // );
+
+    const { sound } = await Audio.Sound.createAsync(
+      require('../speech/signupspeech.mp3')
+    );
+
+    await sound.playAsync()
+
+    this.setState({
+      sound: sound
+    })
   }
 
 signup = async(emailId, password) => {
@@ -111,10 +139,9 @@ signup = async(emailId, password) => {
       //   ]
       // );
     }
-  
 
   usernameRegister = async() => {
-    const users = await db.firebase();
+    const users = await db.firebase(); 
       users.collection('Users')
       .add({
         dateOfCreation: firebase.firestore.Timestamp.now().toDate(),

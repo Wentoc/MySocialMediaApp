@@ -31,8 +31,10 @@ import { Ionicons } from 'react-native-vector-icons/Ionicons'
 // import * as firebase from 'firebase';
 // import db from '../config.js';
 
-LogBox.ignoreLogs(['componentWillReceiveProps']);
-LogBox.ignoreLogs(['componentWillMount']);
+// LogBox.ignoreLogs(['componentWillReceiveProps']);
+// LogBox.ignoreLogs(['componentWillMount']);
+
+LogBox.ignoreAllLogs();
 
 export default class Login extends Component {
   constructor(props) {
