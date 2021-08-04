@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, ScrollView, FlatList, TextInput, TouchableOpacity, RefreshControl, Platform, Dimensions } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, FlatList, TextInput, TouchableOpacity, RefreshControl, Platform, Dimensions, KeyboardAvoidingView } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Feather } from 'react-native-vector-icons';
 import { MaterialCommunityIcons } from 'react-native-vector-icons';
+import { FontAwesome } from 'react-native-vector-icons'
+// import TextInput from 'react-native-textinput-with-icons'
 // import { LinearGradient } from 'expo-linear-gradient';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { useSafeAreaInsets, SafeAreaProvider } from 'react-native-safe-area-context';
@@ -31,6 +33,32 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <SafeAreaView style={styles.droidSafeArea}/>{/* <Header/> */}
+          <KeyboardAvoidingView behavior="padding" enabled>
+            <View style={{ 
+              flex: 1,
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: '#fff', 
+            }}>
+              <Icon style={{ zIndex: 1, marginLeft: -450 }} name="ios-search" size={30} color="#000"/>
+              <TextInput
+                placeholder="              Sort posts..."
+                underlineColorAndroid="transparent"
+                style={{
+                  backgroundColor: '#90ceeb',
+                  width: (width - (25)),
+                  height: 60,
+                  alignSelf: 'center',
+                  marginLeft: 1,
+                  borderRadius: 10,
+                  position: 'absolute',
+                  top: -27,
+                  borderWidth: 0.5,
+                }}
+              />
+            </View>
+          </KeyboardAvoidingView>
             <ScrollView
               showsHorizontalScrollIndicator={false}
               invertStickyHeaders={false}
@@ -38,18 +66,18 @@ export default class HomeScreen extends React.Component {
               scrollEventThrottle={16}
             >
               <View style={styles.allPostContainer}>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 285),  backgroundColor: "lightgreen", borderRadius: 30, marginTop: -90, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 285),  backgroundColor: "lightgreen", borderRadius: 30, marginTop: -90, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 285),  backgroundColor: "lightgreen", borderRadius: 30, marginTop: -90, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 285),  backgroundColor: "lightgreen", borderRadius: 30, marginTop: -90, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 285),  backgroundColor: "lightgreen", borderRadius: 30, marginTop: -90, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 285),  backgroundColor: "lightgreen", borderRadius: 30, marginTop: -90, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 285),  backgroundColor: "lightgreen", borderRadius: 30, marginTop: -90, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 285),  backgroundColor: "lightgreen", borderRadius: 30, marginTop: -90, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 285),  backgroundColor: "lightgreen", borderRadius: 30, marginTop: -90, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 285),  backgroundColor: "lightgreen", borderRadius: 30, marginTop: -90, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 285),  backgroundColor: "lightgreen", borderRadius: 30, marginTop: -90, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 285),  backgroundColor: "lightgreen", borderRadius: 30, marginTop: -90, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "lightgreen", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "lightgreen", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "lightgreen", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "lightgreen", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "lightgreen", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "lightgreen", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "lightgreen", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "lightgreen", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "lightgreen", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "lightgreen", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "lightgreen", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "lightgreen", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
               </View>
             </ScrollView>
 
