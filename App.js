@@ -35,6 +35,8 @@ import { TouchableOpacity } from 'react-native';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 // import MainTabNavigator from './screens/router';
 
+const { width, height } = Dimensions.get('window');
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -66,7 +68,7 @@ const postNavigate = ({ navigation }) => {
   this.props.navigation.navigate('WriteScreen')
 }
 
-const MyTabs = () => {
+const MyTabs = ({ navigation }) => {
   const insets = useSafeAreaInsets();
   const WINDOW_WIDTH = Dimensions.get('window').width;
   return (
@@ -88,8 +90,8 @@ const MyTabs = () => {
             height: 50,
             width: WINDOW_WIDTH,
             flexDirection: 'column',
-            borderWidth: 0.5,
-            borderColor: '#000',
+            // borderWidth: 0.5,
+            // borderColor: '#000',
           },
           showIcon: true,
           showLabel: false
@@ -127,6 +129,9 @@ const MyTabs = () => {
               type='material'
               color='blue'
               size={35}
+              style={{ 
+
+               }}
             />
           )}}
         />
@@ -158,7 +163,7 @@ const MyTabs = () => {
          backgroundColor: '#90ceeb',
          alignSelf: 'center'
       }}>
-        <TouchableOpacity style={{ flex: 1, alignSelf: 'center' }} onPress={() => this.postNavigate({ navigation })}>
+        <TouchableOpacity style={{ flex: 1, alignSelf: 'center' }} onPress={() => navigation.navigate('WriteScreen')}>
            <Image source={require('./assets/postbtn2.png')} style={{
               width: 70,
               height: 70,
@@ -176,8 +181,8 @@ const MyTabs = () => {
 const switchNavigator = createSwitchNavigator({
   // Test:{screen:Test},
   // HomeScreen:{screen:HomeScreen},
-  MyTabs:{screen:MyTabs},
   SignupScreen:{screen:SignupScreen},
+  MyTabs:{screen:MyTabs},
   LoginScreen:{screen:LoginScreen},
 })
 const AppContainer = createAppContainer(switchNavigator);
@@ -185,6 +190,8 @@ const AppContainer = createAppContainer(switchNavigator);
 const styles = StyleSheet.create({
   container:{
     flex: 1,
+    width: width,
+    height: height,
   },
   headerBar:{
     width: '100%',
@@ -196,49 +203,3 @@ const styles = StyleSheet.create({
 
 registerRootComponent(App);
 // AppRegistry.registerComponent('App', () => App);
-
-
-// const TabNavigator = createBottomTabNavigator(
-//   {
-//     HomeScreen: {
-//       screen: HomeScreen,
-//       navigationOptions: {
-//         tabBarLabel: 'Home',
-//         tabBarIcon: ({ tintColor }) => (
-//           <Feather name="home" size={30} color={'#F93680'} />
-//           ),
-//         },
-//       },
-//       WriteScreen: {
-//         screen: WriteScreen,
-//         navigationOptions: {
-//           tabBarLabel: 'Post',
-//           tabBarIcon: ({ tintColor }) => (
-//             <Image style={{width: 65, height: 65,marginTop: -20,}} source={require('./assets/postbtn3.png')}/>
-//             ),
-//           },
-//         },
-//         ProfileScreen: {
-//           screen: ProfileScreen,
-//           navigationOptions: {
-//             tabBarLabel: 'Me',
-//             tabBarIcon: ({ tintColor }) => (
-//               <Feather name="user" size={30} color={tintColor} />
-//               ),
-//             },
-//           },
-//         },
-//     {
-//       initialRouteName: 'HomeScreen',
-//       tabBarOptions: {
-//         // activeTintColor: '#F93680',//#00FBFF
-//         inactiveTintColor: '#E3CBCB',
-//         // showLabel: false,
-//         style: {
-//           height: 58,
-//           backgroundColor: '#1A1818'
-
-//         }
-//       }
-//   }
-// );

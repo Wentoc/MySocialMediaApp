@@ -16,8 +16,7 @@ import {
   SafeAreaView, StatusBar,
   LogBox, ActivityIndicator
 } from 'react-native';
-// import db from '../config.js';
-// import * as firebase from 'firebase';
+import db from '../config.js';
 import { Feather } from 'react-native-vector-icons';
 import { AntDesign } from 'react-native-vector-icons';
 import { Header } from 'react-native-elements/dist/header/Header';
@@ -64,7 +63,7 @@ export default class Signup extends Component {
     // );
 
     const { sound } = await Audio.Sound.createAsync(
-      require('../speech/signupspeech.mp3')
+      // require('../speech/signupspeech.mp3')
     );
 
     await sound.playAsync()
@@ -74,113 +73,36 @@ export default class Signup extends Component {
     })
   }
 
-signup = async(emailId, password) => {
+  // usernameRegister = async() => {
+  //   const users = await db.firebase(); 
+  //     users.collection('Users')
+  //     .add({
+  //       dateOfCreation: firebase.firestore.Timestamp.now().toDate(),
+  //       username: this.state.username
+  //     })
+  // }
 
-  if(emailId, password) {
+  signup = async(email, password) => {
+    if ( email, password ) {
       try {
-        this.setState({
-          isLoading: true,
-        })
-      const response = await firebase
-        .auth()
-        .createUserWithEmailAndPassword(this.state.email, this.state.password)
-        .then((res) => {
-          // res.user.updateProfile({
-          //   displayName: this.state.displayName
-          // })
-          console.log('User registered successfully!')
-          this.setState({
-            email: '', 
-            password: ''
-          })
-
-          if( response ) {
-            this.props.navigation.navigate('LoginScreen')
-          }
-        })      
-  }catch (error) {
-          console.log(error.messsage);
+        const response = await db.auth().createUserWithEmailAndPassword(email, password);
+        if (response) {
+          this.props.navigation.navigate('LoginScreen')
         }
-     }
-
-  // if(emailId, password) { 
-  //   try {  
-  //     this.setState({
-  //       isLoading: true,
-  //     }) 
-  //     await firebase.auth().createUserWithEmailAndPassword(emailId, password)
-  //       .then((res) => {
-  //         console.log('User registered successfully!')
-  //         this.setState({
-  //           isLoading: false,
-  //           displayName: '',
-  //           email: '', 
-  //           password: ''
-  //         })
-  //         this.props.navigation.navigate('LoginScreen')
-  //       })
-      
-  //   } catch (error) {
-  //     console.log(error.messsage);
-  //     switch (error.code) {
-  //       case 'auth/user-not-found':
-  //           Alert.alert(
-  //               "Oops!",
-  //               "User not found, please signup",
-  //               [
-  //                 {
-  //                   text: "Signup",
-  //                   onPress: ()=>{this.props.navigation.navigate('SignUp')}
-  //                 },
-  //                 {
-  //                   text: "OK",
-  //                 }
-  //               ]
-  //             );
-  //           break;
-  //       case 'auth/invalid-email':
-  //           Alert.alert(
-  //               "Oops!",
-  //               "Please enter a valid email",
-  //               [
-  //                 {
-  //                   text: "OK",
-  //                 }
-  //               ]
-  //             );
-  //           break;
-  //         }
-  //       }
-  // }else if(emailId === '', password === '') {
-  //   Alert.alert(
-  //       "Oops!",
-  //       "Enter the Email and Password",
-  //       [
-  //         {
-  //           text: "OK",
-  //         }
-  //       ]
-  //     );
-    
-  //     }
+      } catch (error) {
+        Alert.alert('Oops!', error.message);
+        console.log(error.message);
+      }
     }
-
-  usernameRegister = async() => {
-    const users = await db.firebase(); 
-      users.collection('Users')
-      .add({
-        dateOfCreation: firebase.firestore.Timestamp.now().toDate(),
-        username: this.state.username
-      })
   }
 
   render() {
-    const { isLoading } = this.state;
-    if(this.state.isLoading) {
-      <View style={styles.preloader}>
-          <ActivityIndicator size="large" color="#9E9E9E"/>
-      </View>
-    }
+    // const { isLoading } = this.state;
+    // if(this.state.isLoading) {
+    //   <View style={styles.preloader}>
+    //       <ActivityIndicator size="large" color="#9E9E9E"/>
+    //   </View>
+    // }
     
       return (
         <KeyboardAvoidingView style={styles.container}>
@@ -224,7 +146,7 @@ signup = async(emailId, password) => {
                 style={styles.inputBox2}
                 value={this.state.email}
                 keyboardType="email-address"
-                onChangeText={email => this.setState({ email:email })}
+                onChangeText={(text) => this.setState({ email: text })}
                 autoCapitalize='none'
               />
 
@@ -238,14 +160,14 @@ signup = async(emailId, password) => {
                 autoCapitalize='none'
                 style={styles.inputBox3}
                 value={this.state.password}
-                onChangeText={password => this.setState({ password:password })}
+                onChangeText={(text) => this.setState({ password: text })}
                 secureTextEntry={true}
               />
 
                 </View>
 
                 <TouchableOpacity style={styles.examplebutton} 
-                  onPress={()=>this.signup()  
+                  onPress={()=>this.signup(this.state.email, this.state.password)  
                 }>
                     <Text style={styles.buttonText}>Sign Up</Text>
                     <AntDesign name="arrowright" size={30} color="#ffffff" style={{

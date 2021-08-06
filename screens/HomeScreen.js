@@ -93,7 +93,7 @@ export default class HomeScreen extends React.Component {
             </ScrollView> */}
         </View>
       );
-    }
+    } 
   }
   
   const styles = StyleSheet.create({
@@ -121,16 +121,3 @@ export default class HomeScreen extends React.Component {
       marginLeft: -2
     },
   });
-  
-      {/* <LinearGradient
-          colors={['#05FFFF', '#056AFF', '#D605FF']}
-          style={{
-            backgroundColor: '#000',
-            position: 'absolute',
-            top: 0,
-            height: 100,
-            width: '100%',
-          }}
-          >             
-        <Text style={{textAlign: 'center', marginTop: 60, fontWeight: 'bold', fontSize: 20}}>Social App</Text>
-     </LinearGradient> */}

@@ -27,6 +27,7 @@ import _ from 'lodash';
 import SignupScreen from './SignupScreen.js';
 import { Makiko } from 'react-native-textinput-effects';
 import { Ionicons } from 'react-native-vector-icons/Ionicons'
+import db from '../config.js';
 // import TextInput from 'react-native-textinput-with-icons';
 // import * as firebase from 'firebase';
 // import db from '../config.js';
@@ -45,10 +46,10 @@ export default class Login extends Component {
     };
   }
 
-  login=async(emailId, password)=>{
-      if(emailId, password) {
+  login=async(email, password)=>{
+      if(email, password) {
         try {
-           const response = await firebase.auth.signInWithEmailAndPassword();
+           const response = await db.auth().signInWithEmailAndPassword(email, password);
            if(response) {
                this.props.navigation.navigate('HomeScreen')
            }
@@ -60,8 +61,8 @@ export default class Login extends Component {
                         "User not found, please signup",
                         [
                           {
-                            text: "Signup",
-                            onPress: ()=>{this.props.navigation.navigate('SignUpScreen')}
+                            text: "Sign Up",
+                            onPress: ()=>{this.props.navigation.navigate('SignupScreen')}
                           },
                           {
                             text: "OK",
@@ -137,8 +138,7 @@ export default class Login extends Component {
               style={styles.inputBox2}
               value={this.state.email}
               keyboardType="email-address"
-              onChangeText={email => this.setState({ email:email })}
-              autoCapitalize='none'
+              onChangeText={(text) => this.setState({ email: text })}
             />
 
             <Makiko
@@ -148,20 +148,17 @@ export default class Login extends Component {
               iconColor={'#2D8EFF'}
               inputPadding={16}
               inputStyle={{ color: '#000000', fontSize: 17, width: "90%" }}
-              style={styles.inputBox2}
-              value={this.state.email}
-              keyboardType="email-address"
+              keyboardType="visible-password"
               onChangeText={email => this.setState({ email:email })}
-              autoCapitalize='none'
               style={styles.inputBox3}
               value={this.state.password}
-              onChangeText={password => this.setState({ password:password })}
+              onChangeText={(text) => this.setState({ password: text })}
               secureTextEntry={true}
             />
           </View>
 
              <TouchableOpacity style={styles.examplebutton} onPress={()=>this.login(this.state.email, this.state.password)}>
-                  <Text style={styles.buttonText}>Sign Up</Text>
+                  <Text style={styles.buttonText}>Log In</Text>
                   <AntDesign name="arrowright" size={30} color="#ffffff" style={{
                     marginTop: 2,
                     marginLeft: 15
