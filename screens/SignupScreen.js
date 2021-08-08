@@ -11,10 +11,10 @@ import {
   Platform,
   Dimensions,
   ScrollView,
-  Image,
+  Image, Animated,
   ImageBackground,
   SafeAreaView, StatusBar,
-  LogBox, ActivityIndicator
+  LogBox, ActivityIndicator, PanResponder,
 } from 'react-native';
 import db from '../config.js';
 import { Feather } from 'react-native-vector-icons';
@@ -31,14 +31,27 @@ import { Makiko } from 'react-native-textinput-effects';
 import { Ionicons } from 'react-native-vector-icons/Ionicons';
 import { Audio } from 'expo-av';
 import * as firebase from 'firebase'
-// const audio = require('../speech/signupspeech.mp3');
-
-// LogBox.ignoreLogs(['componentWillReceiveProps']);
-// LogBox.ignoreLogs(['componentWillMount']);
 
 LogBox.ignoreAllLogs(); 
 
 export default class Signup extends Component {
+  pan = new Animated.ValueXY();
+  panResponder = PanResponder.create({
+    onMoveShouldSetPanResponder: () => true,
+    onPanResponderGrant: () => {
+      this.pan.setOffset({
+        x: this.pan.x._value,
+        y: this.pan.y._value
+      });
+    },
+    onPanResponderMove: Animated.event([
+      null,
+      { dx: this.pan.x, dy: this.pan.y }
+    ]),
+    onPanResponderRelease: () => {
+      Animated.spring(this.pan, { toValue: { x: 0, y: 0 } }).start();
+    }
+  });
   constructor(props) {
     super(props);
     this.state = {
@@ -57,10 +70,6 @@ export default class Signup extends Component {
 
   // Welcome Speech for the user to get attracted
   AISpeechPlay = async() => {
-    // await Audio.Sound.createAsync(
-    //   { uri: audio },
-    //   { shouldPlay: true }
-    // );
 
     const { sound } = await Audio.Sound.createAsync(
       // require('../speech/signupspeech.mp3')
@@ -73,25 +82,28 @@ export default class Signup extends Component {
     })
   }
 
-  // usernameRegister = async() => {
-  //   const users = await db.firebase(); 
-  //     users.collection('Users')
-  //     .add({
-  //       dateOfCreation: firebase.firestore.Timestamp.now().toDate(),
-  //       username: this.state.username
-  //     })
-  // }
-
   signup = async(email, password) => {
     if ( email, password ) {
       try {
         const response = await db.auth().createUserWithEmailAndPassword(email, password);
+        // const uReg = async(doc) => {
+        //   await db.collection('Users').doc(doc)
+        //   .add({
+        //     username: this.state.user.username,
+        //   })
+        // }
+
         if (response) {
           this.props.navigation.navigate('LoginScreen')
         }
       } catch (error) {
-        Alert.alert('Oops!', error.message);
-        console.log(error.message);
+        const { errCode } = error.code;
+        switch (errCode) {
+          case 'auth/invalid-email':
+           Alert.alert("Oops!", "Invalid email");
+        }
+        // Alert.alert('Oops!', error.message);
+        // console.log(error.message);
       }
     }
   }
@@ -134,8 +146,22 @@ export default class Signup extends Component {
             }}>
               <View style={{
                 marginLeft: 17,
-                padding: 0
-              }}>
+                padding: 0,
+              }}
+            >
+
+              <Makiko
+                label={'Username'}
+                iconClass={MaterialIcons}
+                iconName={'person-add'}
+                iconColor={'#2D8EFF'}
+                inputPadding={16}
+                inputStyle={{ color: '#000000', fontSize: 17, width: "90%" }}
+                autoCapitalize='none'
+                style={styles.inputBox1}
+                value={this.state.username}
+                onChangeText={(text) => this.setState({ username: text })}
+            />
               <Makiko
                 label={'Email'}
                 iconClass={FontAwesomeIcon}
@@ -164,7 +190,7 @@ export default class Signup extends Component {
                 secureTextEntry={true}
               />
 
-                </View>
+            </View>
 
                 <TouchableOpacity style={styles.examplebutton} 
                   onPress={()=>this.signup(this.state.email, this.state.password)  
@@ -281,6 +307,24 @@ const styles = StyleSheet.create({
     // textAlign: 'center',
     // borderBottomRightRadius: 5,
     // borderTopRightRadius: 5,
+  },
+  inputBox1: {
+    width: '90%',
+    padding: 15,
+    fontSize: 16,
+    borderTopWidth: 0,
+    backgroundColor: '#F1F4F8',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: 10,
+    height: 70,
+    marginTop: 10,
+    shadowColor: '#B0C6C6',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,  
+    elevation: 3,
+    borderRadius: 10,
   },
   button: {
       marginTop: 30,

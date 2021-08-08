@@ -19,6 +19,7 @@ import { Feather } from 'react-native-vector-icons';
 import { Header } from 'react-native-elements';
 import { Home } from 'react-native-feather';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialIcons } from 'react-native-vector-icons'; 
 import { Icon } from 'react-native-elements';
 import { Dimensions } from 'react-native';
 import { registerRootComponent } from 'expo';
@@ -30,10 +31,10 @@ import WriteScreen from './screens/WriteScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import NewsScreen from './screens/NewsScreen';
 import VideoScreen from './screens/VideoScreen';
+import MapScreen from './screens/MapScreen';
 import Test from './screens/Test';
 import { TouchableOpacity } from 'react-native';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
-// import MainTabNavigator from './screens/router';
 
 const { width, height } = Dimensions.get('window');
 
@@ -72,26 +73,35 @@ const MyTabs = ({ navigation }) => {
   const insets = useSafeAreaInsets();
   const WINDOW_WIDTH = Dimensions.get('window').width;
   return (
-    <View style={{ flex: 1, marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0 }}>
+    <View style={{ flex: 1, }}>
         <View style={styles.headerBar}>
-          <Text style={{ fontSize: 30, fontWeight: 'bold', color: "#E9F0F2", }}>Hello!</Text>
-          <Switch/>
+          <Text style={{ fontSize: 30, fontWeight: 'bold', color: "#E9F0F2", left: 10, marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0}}>
+            Hello!
+          </Text>
         </View>
       <Tab.Navigator
         initialRouteName="HomeScreen"
         tabBarOptions={{
           labelStyle: { fontSize: 12 },
           style: { 
-            backgroundColor: '#38e1ff', //'#38e1ff'
-            marginTop: -25,
-            // marginTop: 0,
+            backgroundColor: 'transparent', //'#38e1ff'
+            marginTop: -50,
             borderColor: "transparent",
             elevation: 0,
             height: 50,
             width: WINDOW_WIDTH,
             flexDirection: 'column',
+            position: 'absolute',
             // borderWidth: 0.5,
             // borderColor: '#000',
+            // marginTop: 0,
+          },
+          indicatorStyle: {
+            backgroundColor: '#fff',
+            height: 3.5,
+            borderRadius: 5,
+            width: 50,
+            marginLeft: 20,
           },
           showIcon: true,
           showLabel: false
@@ -101,7 +111,7 @@ const MyTabs = ({ navigation }) => {
           name="HomeScreen"
           component={HomeScreen}
           options={{ tabBarLabel: 'Home', tabBarIcon:({ tintColor, focused })=>(
-            <Ionicons name={focused ? "home" : "home-outline"} size={30} color={'#F93680'} style={{marginLeft: -4}}/> //'#F93680'
+            <Ionicons name={focused ? "home" : "home-outline"} size={30} color={'#F93680'} style={{marginLeft: -4, marginTop: -5}}/> //'#F93680'
           )}}
         />
         {/* <Tab.Screen
@@ -140,7 +150,7 @@ const MyTabs = ({ navigation }) => {
             component={NewsScreen}
             options={{ tabBarLabel: 'News' }}
             options={{ tabBarLabel: 'News', tabBarStyle: { backgroundColor: '#000' }, tabBarIcon:({ tintColor, focused })=>(
-              <Ionicons name={focused ? "newspaper" : "newspaper-outline"} size={30} color="black" />
+              <MaterialIcons name={"article"} size={30} color="black" />
             )}}
         />
         <Tab.Screen
@@ -153,7 +163,7 @@ const MyTabs = ({ navigation }) => {
         />
       </Tab.Navigator>
 
-      <View style={{
+      {/* <View style={{
          position: 'absolute',
          bottom: 12,
          width: (WINDOW_WIDTH - (45)),
@@ -173,7 +183,7 @@ const MyTabs = ({ navigation }) => {
               marginLeft: 0
             }}/>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   );
 }
@@ -181,8 +191,8 @@ const MyTabs = ({ navigation }) => {
 const switchNavigator = createSwitchNavigator({
   // Test:{screen:Test},
   // HomeScreen:{screen:HomeScreen},
-  SignupScreen:{screen:SignupScreen},
   MyTabs:{screen:MyTabs},
+  SignupScreen:{screen:SignupScreen},
   LoginScreen:{screen:LoginScreen},
 })
 const AppContainer = createAppContainer(switchNavigator);
@@ -192,12 +202,15 @@ const styles = StyleSheet.create({
     flex: 1,
     width: width,
     height: height,
+    backgroundColor: '#212121'
   },
   headerBar:{
     width: '100%',
-    height: 100 ,
+    height: 150 ,
     backgroundColor: '#38e1ff',
     flexDirection: 'column',
+    borderBottomLeftRadius: 30,
+    marginTop: 0
   },
 });
 

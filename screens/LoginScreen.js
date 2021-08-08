@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useRef } from 'react';
 import { 
   View, 
   StyleSheet, 
@@ -11,10 +11,10 @@ import {
   Platform,
   Dimensions,
   ScrollView,
-  Image,
+  Image, Animated,
   ImageBackground,
   SafeAreaView, StatusBar,
-  LogBox, ActivityIndicator
+  LogBox, ActivityIndicator, PanResponder,
 } from 'react-native';import { Header } from 'react-native-elements/dist/header/Header';
 import HomeScreen from './HomeScreen.js';
 import { Feather } from 'react-native-vector-icons';
@@ -28,16 +28,53 @@ import SignupScreen from './SignupScreen.js';
 import { Makiko } from 'react-native-textinput-effects';
 import { Ionicons } from 'react-native-vector-icons/Ionicons'
 import db from '../config.js';
-// import TextInput from 'react-native-textinput-with-icons';
-// import * as firebase from 'firebase';
-// import db from '../config.js';
-
-// LogBox.ignoreLogs(['componentWillReceiveProps']);
-// LogBox.ignoreLogs(['componentWillMount']);
 
 LogBox.ignoreAllLogs();
 
+const FadeInView = (props) => {
+  const fadeAnim = useRef(new Animated.Value(0)).current  // Initial value for opacity: 0
+
+  React.useEffect(() => {
+    Animated.timing(
+      fadeAnim,
+      {
+        toValue: 1,
+        duration: 2500,
+      }
+    ).start();
+  }, [fadeAnim])
+
+  return (
+    <Animated.View                 // Special animatable View
+      style={{
+        ...props.style,
+        opacity: fadeAnim,         // Bind opacity to animated value
+      }}
+    >
+      {props.children}
+    </Animated.View>
+  );
+}
+
 export default class Login extends Component {
+  pan = new Animated.ValueXY();
+  panResponder = PanResponder.create({
+    onMoveShouldSetPanResponder: () => true,
+    onPanResponderGrant: () => {
+      this.pan.setOffset({
+        x: this.pan.x._value,
+        y: this.pan.y._value
+      });
+    },
+    onPanResponderMove: Animated.event([
+      null,
+      { dx: this.pan.x, dy: this.pan.y }
+    ]),
+    onPanResponderRelease: () => {
+      this.pan.flattenOffset();
+    }
+  });
+
   constructor(props) {
     super(props);
     this.state = {
@@ -107,11 +144,11 @@ export default class Login extends Component {
               resizeMode: "cover"
             }}
           >
-          <View style={styles.headerTitleContainer}>
-            <Text style={{fontWeight: "bold",fontSize: 30,color:'#fff', letterSpacing: 0.5}}>Hey User,</Text>
-            <Text style={{fontWeight: "300",fontSize: 22,color:'white', marginTop: 3}}>Login to your account!</Text>
-          </View>
-        </ImageBackground>
+            <FadeInView style={styles.headerTitleContainer}>
+              <Text style={{fontWeight: "bold",fontSize: 30,color:'#fff', letterSpacing: 0.5}}>Hey User,</Text>
+              <Text style={{fontWeight: "300",fontSize: 22,color:'white', marginTop: 3}}>Login to your account!</Text>
+            </FadeInView>
+          </ImageBackground>
 
           {/* 
            * Three TextInputs for -
@@ -125,36 +162,37 @@ export default class Login extends Component {
           }}>
             <View style={{
                marginLeft: 17,
-               padding: 0
-            }}>
+               padding: 0,
+            }}
+          >
             
-            <Makiko
-              label={'Email'}
-              iconClass={FontAwesomeIcon}
-              iconName={'envelope'}
-              iconColor={'#2D8EFF'}
-              inputPadding={16}
-              inputStyle={{ color: '#000000', fontSize: 17 }}
-              style={styles.inputBox2}
-              value={this.state.email}
-              keyboardType="email-address"
-              onChangeText={(text) => this.setState({ email: text })}
-            />
+                  <Makiko
+                    label={'Email'}
+                    iconClass={FontAwesomeIcon}
+                    iconName={'envelope'}
+                    iconColor={'#2D8EFF'}
+                    inputPadding={16}
+                    inputStyle={{ color: '#000000', fontSize: 17 }}
+                    style={styles.inputBox2}
+                    value={this.state.email}
+                    keyboardType="email-address"
+                    onChangeText={(text) => this.setState({ email: text })}
+                  />
 
-            <Makiko
-              label={'Password'}
-              iconClass={FontAwesomeIcon}
-              iconName={'lock'}
-              iconColor={'#2D8EFF'}
-              inputPadding={16}
-              inputStyle={{ color: '#000000', fontSize: 17, width: "90%" }}
-              keyboardType="visible-password"
-              onChangeText={email => this.setState({ email:email })}
-              style={styles.inputBox3}
-              value={this.state.password}
-              onChangeText={(text) => this.setState({ password: text })}
-              secureTextEntry={true}
-            />
+                  <Makiko
+                    label={'Password'}
+                    iconClass={FontAwesomeIcon}
+                    iconName={'lock'}
+                    iconColor={'#2D8EFF'}
+                    inputPadding={16}
+                    inputStyle={{ color: '#000000', fontSize: 17, width: "90%" }}
+                    keyboardType="visible-password"
+                    onChangeText={email => this.setState({ email:email })}
+                    style={styles.inputBox3}
+                    value={this.state.password}
+                    onChangeText={(text) => this.setState({ password: text })}
+                    secureTextEntry={true}
+                  />
           </View>
 
              <TouchableOpacity style={styles.examplebutton} onPress={()=>this.login(this.state.email, this.state.password)}>
@@ -165,7 +203,7 @@ export default class Login extends Component {
                   }} />
               </TouchableOpacity>
 
-            <View style={{
+            <FadeInView style={{
               marginLeft: 8
             }}>
               <TouchableOpacity style={styles.loginNavigate} onPress={()=>this.props.navigation.navigate('SignupScreen')}>
@@ -178,11 +216,12 @@ export default class Login extends Component {
                   Forgot Password? 
                 </Text>
               </TouchableOpacity>
+             </FadeInView>
             </View>
+
+            <View style={styles.developerName}>
+              <Text style={{ color: "#2687FF", fontSize: 20, textAlign: 'center', position: 'absolute', top: 6.5, alignSelf: 'center', }}>By Wentoc</Text>
             </View>
-          <View style={styles.developerName}>
-            <Text style={{ color: "#2687FF", fontSize: 20, textAlign: 'center', position: 'absolute', top: 6.5, alignSelf: 'center', }}>By Wentoc</Text>
-          </View>
         </KeyboardAvoidingView>
     );
   }
@@ -310,7 +349,7 @@ const styles = StyleSheet.create({
   headerTitleContainer: {
     position: 'absolute',
     top: 100,
-    left: 25
+    left: 25,
   },
   examplebutton: {
       marginTop: 25,

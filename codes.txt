@@ -350,6 +350,39 @@ signup = async(emailId, password) => {
 -----------------------------------------------------
 
 
+  // usernameRegister = async() => {
+  //   const users = await db.firebase(); 
+  //     users.collection('Users')
+  //     .add({
+  //       dateOfCreation: firebase.firestore.Timestamp.now().toDate(),
+  //       username: this.state.username
+  //     })
+  // }
+
+
+
+    // await Audio.Sound.createAsync(
+    //   { uri: audio },
+    //   { shouldPlay: true }
+    // );
+
+
+// const audio = require('../speech/signupspeech.mp3');
+
+// LogBox.ignoreLogs(['componentWillReceiveProps']);
+// LogBox.ignoreLogs(['componentWillMount']);
+
+
+// import TextInput from 'react-native-textinput-with-icons';
+// import * as firebase from 'firebase';
+// import db from '../config.js';
+
+// LogBox.ignoreLogs(['componentWillReceiveProps']);
+// LogBox.ignoreLogs(['componentWillMount']);
+
+// import MainTabNavigator from './screens/router';
+
+
 
 
 

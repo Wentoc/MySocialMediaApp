@@ -53,7 +53,7 @@ export default class HomeScreen extends React.Component {
                   marginLeft: 1,
                   borderRadius: 10,
                   position: 'absolute',
-                  top: -27,
+                  top: 20,
                   borderWidth: 0.5,
                 }}
               />
@@ -66,23 +66,23 @@ export default class HomeScreen extends React.Component {
               scrollEventThrottle={16}
             >
               <View style={styles.allPostContainer}>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "lightgreen", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "lightgreen", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "lightgreen", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "lightgreen", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "lightgreen", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "lightgreen", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "lightgreen", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "lightgreen", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "lightgreen", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "lightgreen", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "lightgreen", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "lightgreen", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff"}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#ffffff", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#ffffff", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#ffffff", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#ffffff", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#ffffff", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#ffffff", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#ffffff", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#ffffff", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#ffffff", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#ffffff", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#ffffff", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#ffffff", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
               </View>
             </ScrollView>
 
             {/* <ScrollView showsVerticalScrollIndicator={false} vertical>
-              <View style={{ marginTop: 20 }}>
+              <View style={{ marginTop: 0}}>
                 <View style={{width:"95%", height: 100, alignSelf: 'center', backgroundColor: "#90ceeb", marginTop: 10, borderRadius: 10}}></View>
                 <View style={{width:"95%", height: 100, alignSelf: 'center', backgroundColor: "#90ceeb", marginTop: 10, borderRadius: 10}}></View>
                 <View style={{width:"95%", height: 100, alignSelf: 'center', backgroundColor: "#90ceeb", marginTop: 10, borderRadius: 10}}></View>
@@ -97,12 +97,14 @@ export default class HomeScreen extends React.Component {
   }
   
   const styles = StyleSheet.create({
-    droidSafeArea: {
-      marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
-    },
+    // droidSafeArea: {
+    //   marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+    // },
     container:{
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: '#212121', //#fff
+      width: '100%',
+      height: '100%',
     },
     headerBar:{
       width: '10%',
@@ -116,8 +118,8 @@ export default class HomeScreen extends React.Component {
     },
     allPostContainer:{
       alignSelf: 'center',
-      marginTop: 2,
+      marginTop: 170,
       flexDirection: 'row',
-      marginLeft: -2
+      marginLeft: -2,
     },
   });
