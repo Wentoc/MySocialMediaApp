@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import {  View, Text, StyleSheet, SafeAreaView, Platform, Dimensions, Image, ImageBackground } from 'react-native';
 
 const appTitle = [
@@ -7,7 +7,7 @@ const appTitle = [
     'News Feed'
 ];
 
-class NewsScreen extends PureComponent {
+export default class NewsScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,8 +24,6 @@ class NewsScreen extends PureComponent {
     );
   }
 }
-
-export default NewsScreen;
 
 const styles = StyleSheet.create({
     container: {

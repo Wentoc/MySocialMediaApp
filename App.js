@@ -3,26 +3,28 @@ import {
   Text, 
   View, StyleSheet, 
   Image, Alert, ToastAndroid, 
-  Switch, EdgeInsetsPropType, 
+  Switch, EdgeInsetsPropType, TouchableOpacity,
   ScrollView, AppRegistry, StatusBar, Platform,
 } from 'react-native';
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import { createBottomTabNavigator } from 'react-navigation-tabs';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { useSafeAreaInsets, SafeAreaProvider } from 'react-native-safe-area-context';
 import 'react-native-gesture-handler';
 import * as firebase from 'firebase';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import { Feather } from 'react-native-vector-icons';
-import { Header } from 'react-native-elements';
-import { Home } from 'react-native-feather';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { MaterialIcons } from 'react-native-vector-icons'; 
-import { Icon } from 'react-native-elements';
 import { Dimensions } from 'react-native';
+import { Icon } from 'react-native-elements';
 import { registerRootComponent } from 'expo';
+import { Header } from 'react-native-elements';
+import { Home, Video } from 'react-native-feather';
+import { Feather } from 'react-native-vector-icons';
+import { MaterialIcons } from 'react-native-vector-icons'; 
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+// import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+// import { useSafeAreaInsets, SafeAreaProvider } from 'react-native-safe-area-context';
+
+
 // Screens && Components
 import SignupScreen from './screens/SignupScreen';
 import LoginScreen from './screens/LoginScreen';
@@ -33,9 +35,12 @@ import NewsScreen from './screens/NewsScreen';
 import VideoScreen from './screens/VideoScreen';
 import MapScreen from './screens/MapScreen';
 import Test from './screens/Test';
-import { TouchableOpacity } from 'react-native';
-import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
+// import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+// import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 const { width, height } = Dimensions.get('window');
 
 export default class App extends React.Component {
@@ -52,150 +57,115 @@ export default class App extends React.Component {
 
   render() {
       return (
-        <SafeAreaProvider>
           <NavigationContainer>
             <View style={styles.container}>
-                <AppContainer/>
+              {/* <AppContainer /> */}
+              <Stack.Navigator initialRouteName={HomeScreen} screenOptions={{ headerShown: false }}>
+                <Stack.Screen name='Signup' component={SignupScreen}></Stack.Screen>
+                <Stack.Screen name='Login' component={LoginScreen}></Stack.Screen>
+                <Stack.Screen name='Home' component={HomeScreen}></Stack.Screen>
+              </Stack.Navigator>
+
+              <Tab.Navigator tabBarOptions={{
+                showLabel: false,
+                style: {
+                  backgroundColor: 'white',
+                  position: 'absolute',
+                  bottom: 30,
+                  marginhorizontal: 20,
+                  // max height
+                  height: 60,
+                  borderRadius: 10,
+                  // Shadow
+                  elevation: 5,
+                }
+              }}>
+                {
+                  // Tab Screens...
+                  
+                }
+                <Tab.Screen name={"Feed"} component={HomeScreen} options={{
+
+                }}></Tab.Screen>
+                <Tab.Screen name={"Watch"} component={VideoScreen} options={{
+                  
+                }}></Tab.Screen>
+                <Tab.Screen name={"News"} component={NewsScreen} options={{
+                  
+                }}></Tab.Screen>
+                <Tab.Screen name={"Profile"} component={ProfileScreen} options={{
+                  
+                }}></Tab.Screen>
+              </Tab.Navigator>
             </View>
           </NavigationContainer>
-        </SafeAreaProvider>
       );
   }
 }
 
-const Tab = createMaterialTopTabNavigator();
+// const postNavigate = ({ navigation }) => {
+//   this.props.navigation.navigate('WriteScreen')
+// }
 
-const postNavigate = ({ navigation }) => {
-  this.props.navigation.navigate('WriteScreen')
-}
+// const MyTabs = ({ navigation }) => {
+//   // const insets = useSafeAreaInsets();
+//   // const WINDOW_WIDTH = Dimensions.get('window').width;
+//   return (
+//     <View style={{ flex: 1, }}>
+//         <View style={styles.headerBar}>
+//           <Text style={{ fontSize: 30, fontWeight: 'bold', color: "#E9F0F2", left: 10, marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0}}>
+//             Hello!
+//           </Text>
+//         </View>
 
-const MyTabs = ({ navigation }) => {
-  const insets = useSafeAreaInsets();
-  const WINDOW_WIDTH = Dimensions.get('window').width;
-  return (
-    <View style={{ flex: 1, }}>
-        <View style={styles.headerBar}>
-          <Text style={{ fontSize: 30, fontWeight: 'bold', color: "#E9F0F2", left: 10, marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0}}>
-            Hello!
-          </Text>
-        </View>
-      <Tab.Navigator
-        initialRouteName="HomeScreen"
-        tabBarOptions={{
-          labelStyle: { fontSize: 12 },
-          style: { 
-            backgroundColor: 'transparent', //'#38e1ff'
-            marginTop: -50,
-            borderColor: "transparent",
-            elevation: 0,
-            height: 50,
-            width: WINDOW_WIDTH,
-            flexDirection: 'column',
-            position: 'absolute',
-            // borderWidth: 0.5,
-            // borderColor: '#000',
-            // marginTop: 0,
-          },
-          indicatorStyle: {
-            backgroundColor: '#fff',
-            height: 3.5,
-            borderRadius: 5,
-            width: 50,
-            marginLeft: 20,
-          },
-          showIcon: true,
-          showLabel: false
-        }}
-      >
-        <Tab.Screen
-          name="HomeScreen"
-          component={HomeScreen}
-          options={{ tabBarLabel: 'Home', tabBarIcon:({ tintColor, focused })=>(
-            <Ionicons name={focused ? "home" : "home-outline"} size={30} color={'#F93680'} style={{marginLeft: -4, marginTop: -5}}/> //'#F93680'
-          )}}
-        />
-        {/* <Tab.Screen
-          name="WriteScreen"
-          component={WriteScreen}
-          options={{ tabBarLabel: 'Post' }}
-          options={{ tabBarLabel: 'Post', tabBarIcon:({ tintColor })=>(
-            <Image source={require('./assets/postbtn2.png')} style={{
-              width: 70,
-              height: 70,
-              backgroundColor: tintColor,
-              alignSelf: 'center',
-              marginLeft: 25,
-              marginTop: -20,
-            }}/>
-          )}}
-        /> */}
-        <Tab.Screen
-          name="VideoScreen"
-          component={VideoScreen}
-          tabBarColor={'#000'}
-          options={{ tabBarLabel: 'Videos', tabBarIcon:({ tintColor, focused })=>(
-            <Icon
-              name='ondemand-video'
-              type='material'
-              color='blue'
-              size={35}
-              style={{ 
+//         <Tab.Navigator
+//           initialRouteName="HomeScreen"
+//           activeColor="#e91e63"
+//           barStyle={{ backgroundColor: 'tomato' }}
+//         >
+//       <Tab.Screen
+//         name="Feed"
+//         component={HomeScreen}
+//         options={{
+//           tabBarLabel: 'Home',
+//           tabBarIcon: ({ color }) => (
+//             <MaterialCommunityIcons name="home" color={color} size={26} />
+//           ),
+//         }}
+//       />
+//       <Tab.Screen
+//         name="Notifications"
+//         component={NewsScreen}
+//         options={{
+//           tabBarLabel: 'Updates',
+//           tabBarIcon: ({ color }) => (
+//             <MaterialCommunityIcons name="bell" color={color} size={26} />
+//           ),
+//         }}
+//       />
+//       <Tab.Screen
+//         name="Profile"
+//         component={VideoScreen}
+//         options={{
+//           tabBarLabel: 'Profile',
+//           tabBarIcon: ({ color }) => (
+//             <MaterialCommunityIcons name="account" color={color} size={26} />
+//           ),
+//         }}
+//       />
+//     </Tab.Navigator>
+//     </View>
+//   );
+// }
 
-               }}
-            />
-          )}}
-        />
-          <Tab.Screen
-            name="NewsScreen"
-            component={NewsScreen}
-            options={{ tabBarLabel: 'News' }}
-            options={{ tabBarLabel: 'News', tabBarStyle: { backgroundColor: '#000' }, tabBarIcon:({ tintColor, focused })=>(
-              <MaterialIcons name={"article"} size={30} color="black" />
-            )}}
-        />
-        <Tab.Screen
-          name="ProfileScreen"
-          component={ProfileScreen}
-          options={{ tabBarLabel: 'Profile' }}
-          options={{ tabBarLabel: 'Me', tabBarIcon:({ tintColor })=>(
-            <Feather name="user" size={30} color={'#2E46FC'} />
-          )}}
-        />
-      </Tab.Navigator>
-
-      {/* <View style={{
-         position: 'absolute',
-         bottom: 12,
-         width: (WINDOW_WIDTH - (45)),
-         height: 70,
-         borderRadius: 20,
-         elevation: 5,
-         backgroundColor: '#90ceeb',
-         alignSelf: 'center'
-      }}>
-        <TouchableOpacity style={{ flex: 1, alignSelf: 'center' }} onPress={() => navigation.navigate('WriteScreen')}>
-           <Image source={require('./assets/postbtn2.png')} style={{
-              width: 70,
-              height: 70,
-              alignSelf: 'center',
-              marginLeft: 25,
-              marginTop: -5,
-              marginLeft: 0
-            }}/>
-        </TouchableOpacity>
-      </View> */}
-    </View>
-  );
-}
-
-const switchNavigator = createSwitchNavigator({
-  // Test:{screen:Test},
-  // HomeScreen:{screen:HomeScreen},
-  MyTabs:{screen:MyTabs},
-  SignupScreen:{screen:SignupScreen},
-  LoginScreen:{screen:LoginScreen},
-})
-const AppContainer = createAppContainer(switchNavigator);
+// const switchNavigator = createSwitchNavigator({
+//   // MyTabs:{screen:MyTabs},
+//   SignupScreen:{screen:SignupScreen},
+//   LoginScreen:{screen:LoginScreen},
+//   // Test:{screen:Test},
+//   // HomeScreen:{screen:HomeScreen},
+// })
+// const AppContainer = createAppContainer(switchNavigator);
 
 const styles = StyleSheet.create({
   container:{
@@ -207,9 +177,9 @@ const styles = StyleSheet.create({
   headerBar:{
     width: '100%',
     height: 150 ,
-    backgroundColor: '#38e1ff',
+    backgroundColor: '#ffffff', //38e1ff
     flexDirection: 'column',
-    borderBottomLeftRadius: 30,
+    // borderBottomLeftRadius: 30,
     marginTop: 0
   },
 });

@@ -383,8 +383,117 @@ signup = async(emailId, password) => {
 // import MainTabNavigator from './screens/router';
 
 
+{/* <View style={{
+         position: 'absolute',
+         bottom: 12,
+         width: (WINDOW_WIDTH - (45)),
+         height: 70,
+         borderRadius: 20,
+         elevation: 5,
+         backgroundColor: '#90ceeb',
+         alignSelf: 'center'
+      }}>
+        <TouchableOpacity style={{ flex: 1, alignSelf: 'center' }} onPress={() => navigation.navigate('WriteScreen')}>
+           <Image source={require('./assets/postbtn2.png')} style={{
+              width: 70,
+              height: 70,
+              alignSelf: 'center',
+              marginLeft: 25,
+              marginTop: -5,
+              marginLeft: 0
+            }}/>
+        </TouchableOpacity>
+      </View> */}
 
 
+--------------------------------------------------------------------------------
+<Tab.Navigator
+        initialRouteName="HomeScreen"
+        tabBarOptions={{
+          labelStyle: { fontSize: 12 },
+          // tabStyle: { 
+          //   width: width / 4,
+          //  },
+          style: { 
+            backgroundColor: 'transparent', //'#38e1ff'
+            marginTop: -50,
+            borderColor: "transparent",
+            elevation: 0,
+            height: 50,
+            width: WINDOW_WIDTH,
+            flexDirection: 'column',
+            position: 'absolute',
+            borderBottomWidth: 0.5,
+            borderColor: '#000',
+            // marginTop: 0,
+          },
+          indicatorStyle: {
+            backgroundColor: '#fff',
+            height: 3.5,
+            borderRadius: 5,
+            width: 50,
+            marginLeft: 20,
+          },
+          showIcon: true,
+          showLabel: false
+        }}
+      >
+        <Tab.Screen
+          name="HomeScreen"
+          component={HomeScreen}
+          options={{ tabBarLabel: 'Home', tabBarIcon:({ tintColor, focused })=>(
+            <Feather name={"home"} size={30} color={'#F93680'} style={{marginLeft: -4, marginTop: -5}}/> //'#F93680'
+          )}}
+        />
+        {/* <Tab.Screen
+          name="WriteScreen"
+          component={WriteScreen}
+          options={{ tabBarLabel: 'Post' }}
+          options={{ tabBarLabel: 'Post', tabBarIcon:({ tintColor })=>(
+            <Image source={require('./assets/postbtn2.png')} style={{
+              width: 70,
+              height: 70,
+              backgroundColor: tintColor,
+              alignSelf: 'center',
+              marginLeft: 25,
+              marginTop: -20,
+            }}/>
+          )}}
+        /> */}
+        <Tab.Screen
+          name="VideoScreen"
+          component={VideoScreen}
+          tabBarColor={'#000'}
+          options={{ tabBarLabel: 'Videos', tabBarIcon:({ tintColor, focused })=>(
+            <Icon
+              name='ondemand-video'
+              type='material'
+              color='blue'
+              size={25}
+              style={{ 
+
+               }}
+            />
+          )}}
+        />
+          <Tab.Screen
+            name="NewsScreen"
+            component={NewsScreen}
+            options={{ tabBarLabel: 'News' }}
+            options={{ tabBarLabel: 'News', tabBarStyle: { backgroundColor: '#000' }, tabBarIcon:({ tintColor, focused })=>(
+              <MaterialIcons name={"article"} size={30} color="black" />
+            )}}
+        />
+        <Tab.Screen
+          name="ProfileScreen"
+          component={ProfileScreen}
+          options={{ tabBarLabel: 'Profile' }}
+          options={{ tabBarLabel: 'Me', tabBarIcon:({ tintColor })=>(
+            <Feather name="user" size={30} color={'#2E46FC'} />
+          )}}
+        />
+      </Tab.Navigator>
+--------------------------------------------------------------------------------
 
 
 

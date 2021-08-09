@@ -15,7 +15,8 @@ import {
   ImageBackground,
   SafeAreaView, StatusBar,
   LogBox, ActivityIndicator, PanResponder,
-} from 'react-native';import { Header } from 'react-native-elements/dist/header/Header';
+} from 'react-native';
+import { Header } from 'react-native-elements/dist/header/Header';
 import HomeScreen from './HomeScreen.js';
 import { Feather } from 'react-native-vector-icons';
 import { AntDesign } from 'react-native-vector-icons';
@@ -32,7 +33,7 @@ import db from '../config.js';
 LogBox.ignoreAllLogs();
 
 const FadeInView = (props) => {
-  const fadeAnim = useRef(new Animated.Value(0)).current  // Initial value for opacity: 0
+  const fadeAnim = React.useRef(new Animated.Value(0)).current  // Initial value for opacity: 0
 
   React.useEffect(() => {
     Animated.timing(
@@ -196,7 +197,9 @@ export default class Login extends Component {
           </View>
 
              <TouchableOpacity style={styles.examplebutton} onPress={()=>this.login(this.state.email, this.state.password)}>
+               <FadeInView>
                   <Text style={styles.buttonText}>Log In</Text>
+               </FadeInView>
                   <AntDesign name="arrowright" size={30} color="#ffffff" style={{
                     marginTop: 2,
                     marginLeft: 15
@@ -220,7 +223,9 @@ export default class Login extends Component {
             </View>
 
             <View style={styles.developerName}>
-              <Text style={{ color: "#2687FF", fontSize: 20, textAlign: 'center', position: 'absolute', top: 6.5, alignSelf: 'center', }}>By Wentoc</Text>
+              <FadeInView>
+                <Text style={{ color: "#2687FF", fontSize: 20, textAlign: 'center', position: 'absolute', top: 6.5, alignSelf: 'center', }}>By Wentoc</Text>
+              </FadeInView>
             </View>
         </KeyboardAvoidingView>
     );

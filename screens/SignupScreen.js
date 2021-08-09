@@ -32,7 +32,32 @@ import { Ionicons } from 'react-native-vector-icons/Ionicons';
 import { Audio } from 'expo-av';
 import * as firebase from 'firebase'
 
-LogBox.ignoreAllLogs(); 
+LogBox.ignoreAllLogs();
+
+const FadeInView = (props) => {
+  const fadeAnim = React.useRef(new Animated.Value(0)).current  // Initial value for opacity: 0
+
+  React.useEffect(() => {
+    Animated.timing(
+      fadeAnim,
+      {
+        toValue: 1,
+        duration: 2500,
+      }
+    ).start();
+  }, [fadeAnim])
+
+  return (
+    <Animated.View                 // Special animatable View
+      style={{
+        ...props.style,
+        opacity: fadeAnim,         // Bind opacity to animated value
+      }}
+    >
+      {props.children}
+    </Animated.View>
+  );
+}
 
 export default class Signup extends Component {
   pan = new Animated.ValueXY();
@@ -128,10 +153,10 @@ export default class Signup extends Component {
             resizeMode: "cover"
           }}
           >
-            <View style={styles.headerTitleContainer}>
+            <FadeInView style={styles.headerTitleContainer}>
               <Text style={{fontWeight: "bold",fontSize: 30,color:'#fff', letterSpacing: 0.5}}>Hey Welcome,</Text>
               <Text style={{fontWeight: "300",fontSize: 22,color:'white', marginTop: 3}}>Create your account!</Text>
-            </View>
+            </FadeInView>
           </ImageBackground>
 
             {/* 
@@ -150,7 +175,7 @@ export default class Signup extends Component {
               }}
             >
 
-              <Makiko
+              {/* <Makiko
                 label={'Username'}
                 iconClass={MaterialIcons}
                 iconName={'person-add'}
@@ -161,7 +186,7 @@ export default class Signup extends Component {
                 style={styles.inputBox1}
                 value={this.state.username}
                 onChangeText={(text) => this.setState({ username: text })}
-            />
+            /> */}
               <Makiko
                 label={'Email'}
                 iconClass={FontAwesomeIcon}
@@ -195,14 +220,16 @@ export default class Signup extends Component {
                 <TouchableOpacity style={styles.examplebutton} 
                   onPress={()=>this.signup(this.state.email, this.state.password)  
                 }>
+                  <FadeInView>
                     <Text style={styles.buttonText}>Sign Up</Text>
+                  </FadeInView>
                     <AntDesign name="arrowright" size={30} color="#ffffff" style={{
                       marginTop: 2,
                       marginLeft: 15
                     }} />
                 </TouchableOpacity>
 
-              <View style={{
+              <FadeInView style={{
                 marginLeft: 8
               }}>
                 <TouchableOpacity style={styles.loginNavigate} onPress={()=>this.props.navigation.navigate('LoginScreen')}>
@@ -215,10 +242,14 @@ export default class Signup extends Component {
                     Forgot Password? 
                   </Text>
                 </TouchableOpacity> */}
+              </FadeInView>
               </View>
-              </View>
+
+          
             <View style={styles.developerName}>
-              <Text style={{ color: "#2687FF", fontSize: 20, textAlign: 'center', position: 'absolute', top: 6.5, alignSelf: 'center', }}>By Wentoc</Text>
+              <FadeInView>
+                <Text style={{ color: "#2687FF", fontSize: 20, textAlign: 'center', position: 'absolute', top: 6.5, alignSelf: 'center', }}>By Wentoc</Text>
+              </FadeInView>
             </View>
               {/* </ImageBackground> */}
           </KeyboardAvoidingView>

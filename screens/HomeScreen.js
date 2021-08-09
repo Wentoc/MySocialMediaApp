@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, ScrollView, FlatList, TextInput, TouchableOpacity, RefreshControl, Platform, Dimensions, KeyboardAvoidingView } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, FlatList, TextInput, TouchableOpacity, RefreshControl, Platform, Dimensions, KeyboardAvoidingView, ImageBackground } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Feather } from 'react-native-vector-icons';
 import { MaterialCommunityIcons } from 'react-native-vector-icons';
@@ -34,6 +34,15 @@ export default class HomeScreen extends React.Component {
       <View style={styles.container}>
         <SafeAreaView style={styles.droidSafeArea}/>{/* <Header/> */}
           <KeyboardAvoidingView behavior="padding" enabled>
+            <ImageBackground
+             source={require('../assets/bg2.png')}
+              style={{
+                resizeMode: 'cover',
+                flex: 1,
+                width: '100%',
+                height: '100%'
+              }}
+            />
             <View style={{ 
               flex: 1,
               flexDirection: 'row',
@@ -41,10 +50,10 @@ export default class HomeScreen extends React.Component {
               alignItems: 'center',
               backgroundColor: '#fff', 
             }}>
-              <Icon style={{ zIndex: 1, marginLeft: -450 }} name="ios-search" size={30} color="#000"/>
+              {/* <Icon style={{ zIndex: 1, marginLeft: 500 }} name="ios-search" size={30} color="#000"/> */}
               <TextInput
-                placeholder="              Sort posts..."
-                underlineColorAndroid="transparent"
+                placeholder="   Sort posts..."
+                // underlineColorAndroid="transparent"
                 style={{
                   backgroundColor: '#90ceeb',
                   width: (width - (25)),
@@ -53,8 +62,8 @@ export default class HomeScreen extends React.Component {
                   marginLeft: 1,
                   borderRadius: 10,
                   position: 'absolute',
-                  top: 20,
-                  borderWidth: 0.5,
+                  top: 80,
+                  // borderWidth: 0.5,
                 }}
               />
             </View>
@@ -66,18 +75,18 @@ export default class HomeScreen extends React.Component {
               scrollEventThrottle={16}
             >
               <View style={styles.allPostContainer}>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#ffffff", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#ffffff", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#ffffff", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#ffffff", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#ffffff", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#ffffff", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#ffffff", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#ffffff", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#ffffff", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#ffffff", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#ffffff", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
-                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#ffffff", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#212121", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#212121", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#212121", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#212121", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#212121", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#212121", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#212121", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#212121", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#212121", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#212121", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#212121", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
+                <View style={{width: (Dimensions.get('window').width - 25), height: (Dimensions.get('window').height - 300),  backgroundColor: "#212121", borderRadius: 22, marginTop: -50, marginLeft: 15}}><Text style={{color: "#fff", alignSelf: "center", marginTop: 200}}>1</Text></View>
               </View>
             </ScrollView>
 
@@ -102,15 +111,15 @@ export default class HomeScreen extends React.Component {
     // },
     container:{
       flex: 1,
-      backgroundColor: '#212121', //#fff
+      backgroundColor: '#fff', //#fff
       width: '100%',
       height: '100%',
     },
     headerBar:{
-      width: '10%',
+      width: '100%',
       height: 0,
       backgroundColor: '#F8F0F0',
-      flexDirection: 'row',
+      flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
       borderBottomColor: '#000000', 
