@@ -6,7 +6,6 @@ import { MaterialCommunityIcons } from 'react-native-vector-icons';
 import { FontAwesome } from 'react-native-vector-icons'
 // import TextInput from 'react-native-textinput-with-icons'
 // import { LinearGradient } from 'expo-linear-gradient';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { useSafeAreaInsets, SafeAreaProvider } from 'react-native-safe-area-context';
 import { SafeAreaView } from 'react-navigation';
 import { StatusBar } from 'react-native';
