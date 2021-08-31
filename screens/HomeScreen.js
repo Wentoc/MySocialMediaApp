@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, ScrollView, FlatList, TextInput, TouchableOpacity, RefreshControl, Platform, Dimensions, KeyboardAvoidingView, ImageBackground } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { Feather } from 'react-native-vector-icons';
-import { MaterialCommunityIcons } from 'react-native-vector-icons';
-import { FontAwesome } from 'react-native-vector-icons'
+import Feather from 'react-native-vector-icons';
+import MaterialCommunityIcons from 'react-native-vector-icons';
+import FontAwesome from 'react-native-vector-icons'
 // import TextInput from 'react-native-textinput-with-icons'
 // import { LinearGradient } from 'expo-linear-gradient';
 import { useSafeAreaInsets, SafeAreaProvider } from 'react-native-safe-area-context';

@@ -8,16 +8,16 @@ import {
 } from 'react-native';
 import 'react-native-gesture-handler';
 import { Dimensions } from 'react-native';
-import { Icon } from 'react-native-elements';
+import Icon from 'react-native-elements';
 import { registerRootComponent } from 'expo';
 import { Header } from 'react-native-elements';
 import { Home, Video } from 'react-native-feather';
-import { Feather } from 'react-native-vector-icons';
-import { MaterialIcons } from 'react-native-vector-icons'; 
-import { Ionicons } from 'react-native-vector-icons/Ionicons';
+import Feather from 'react-native-vector-icons';
+import MaterialIcons from 'react-native-vector-icons'; 
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { MaterialCommunityIcons } from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // Screens && Components
 import SignupScreen from './SignupScreen';

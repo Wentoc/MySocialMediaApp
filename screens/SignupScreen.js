@@ -17,18 +17,18 @@ import {
   LogBox, ActivityIndicator, PanResponder,
 } from 'react-native';
 import db from '../config.js';
-import { Feather } from 'react-native-vector-icons';
-import { AntDesign } from 'react-native-vector-icons';
+import Feather from 'react-native-vector-icons';
+import AntDesign from 'react-native-vector-icons';
 import { Header } from 'react-native-elements/dist/header/Header';
-import { MaterialIcons } from 'react-native-vector-icons';
+import MaterialIcons from 'react-native-vector-icons';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import { Bold } from 'react-native-feather';
+import Bold from 'react-native-feather';
 import TextInput from 'react-native-textinput-with-icons';
 import { Hideo } from 'react-native-textinput-effects';
 import _ from 'lodash';
 import LoginScreen from './LoginScreen';
 import { Makiko } from 'react-native-textinput-effects';
-import { Ionicons } from 'react-native-vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Audio } from 'expo-av';
 import * as firebase from 'firebase'
 

@@ -16,16 +16,17 @@ import LoginScreen from './LoginScreen';
 import HomeScreen from './HomeScreen';
 
 import TabNavigator from './TabNavigator';
+import Signup from './SignupScreen';
 
 const Stack = createStackNavigator();
 
 const StackNavigate = () => {
     return (
        <NavigationContainer>
-          <Stack.Navigator screenOptions={{
+          <Stack.Navigator initialRouteName={HomeScreen} screenOptions={{
             headerShown: false
           }}>
-              <Stack.Screen name="Home" component={HomeScreen} />
+              <Stack.Screen name="Home" component={TabNavigator} />
               <Stack.Screen name="SignupScreen" component={SignupScreen} />
               <Stack.Screen name="LoginScreen" component={LoginScreen} />
           </Stack.Navigator>
