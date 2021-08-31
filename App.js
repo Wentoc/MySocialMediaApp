@@ -10,7 +10,7 @@ import 'react-native-gesture-handler';
 import * as firebase from 'firebase';
 import { Dimensions } from 'react-native';
 import { registerRootComponent } from 'expo';
-import { NavigationContainer } from '@react-navigation/native'
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createAppContainer, createSwitchNavigator } from '@react-navigation/native';
